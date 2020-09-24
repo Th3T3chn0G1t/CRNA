@@ -1,0 +1,7 @@
+.DS_Store
+logs/
+src/*.o
+src/test/*.o
+.vscode
+main
+main.dSYM
