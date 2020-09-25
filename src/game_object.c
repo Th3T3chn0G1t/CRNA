@@ -30,10 +30,24 @@ void render(game_object_T* o, context_T* context, void* passthrough) {
     }
 }
 
+bool on_collide(game_object_T* o, game_object_T* other) {
+    if(o->on_collide)
+        return o->on_collide(o, other);
+    return false;
+}
+
 void set_ticking_function(game_object_T* o, void (*tick) (void*, void*)) {
     o->tick = tick;
 }
 
 void set_render_function(game_object_T* o, void (*render) (void*, context_T*, void*)) {
     o->render = render;
+}
+
+void set_on_collide_function(game_object_T* o, bool (*on_collide) (void*, void*)) {
+    o->on_collide = on_collide;
+}
+
+void set_implementor(game_object_T* o, void* implementor) {
+    o->implementor = implementor;
 }
