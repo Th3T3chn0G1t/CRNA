@@ -10,10 +10,35 @@ game_object_T* game_object(node_T* registry, int x, int y, int width, int height
     object->animation = animation;
     object->blacklisted = false;
 
-    if(registry)
-        add(registry, object);
+    add(registry, object);
+    object->registry = registry;
 
     return object;
+}
+
+bool check_collide(game_object_T* object) {
+    node_T* current = object->registry;
+    do {
+        game_object_T* o = (game_object_T*) current->data;
+        if((unsigned long) o == (unsigned long) object)
+            goto next;
+                
+        if(!o)
+            break;
+
+        if(object->x + object->width > o->x)
+            if(object->x < o->x + o->width)
+                if(object->y + object->height > o->y)
+                    if(object->y < o->y + o->height)
+                        return on_collide(o, object);
+
+        next:
+        if(!current->next)
+            break;
+            
+        current = current->next;
+    } while(1);
+    return false;
 }
 
 void tick(game_object_T* o, void* passthrough) {

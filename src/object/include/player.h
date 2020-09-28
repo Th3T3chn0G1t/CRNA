@@ -9,7 +9,6 @@
 typedef struct PLAYER {
     game_object_T* object;
     animation_T** animations;
-    node_T* registry;
 } player_T;
 
 player_T* player(node_T* registry, int x, int y, animation_T** animations);
