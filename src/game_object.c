@@ -10,8 +10,10 @@ game_object_T* game_object(node_T* registry, int x, int y, int width, int height
     object->animation = animation;
     object->blacklisted = false;
 
-    add(registry, object);
-    object->registry = registry;
+    if(registry) {
+        add(registry, object);
+        object->registry = registry;
+    }
 
     return object;
 }

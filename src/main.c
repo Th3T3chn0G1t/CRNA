@@ -1,6 +1,7 @@
 #include "include/linked_list.h"
 #include "vendor/include/window.h"
 #include "object/include/player.h"
+#include "object/include/interactable.h"
 
 /*
  * A reference the the game object
@@ -35,10 +36,6 @@ void frame() {
     update(game);
 }
 
-bool rebound(void* o, void* other) {
-    return true;
-}
-
 int main(int argc, char** argv) {
     // Initializes the game with a 1080x720 window in fullscreen with the title "SDL"
     game = init(1280, 800, false, "SDL");
@@ -47,9 +44,12 @@ int main(int argc, char** argv) {
         set_position(game->window, 0, 0);    
     }
     
-    game_object_T* object = game_object(NULL, 0, 0, 64, 64, direct_load_animation(game->context->image->surface->format, 10, 2, "res/img/A.png", "res/img/B.png"));
+    game_object_T* object = game_object(NULL, 0, 0, 0, 0, direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/0x0.png"));
     registry = node(object);
-    set_on_collide_function(object, rebound);
+    
+    animation_T* interactable_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/A.png");
+    interactable(registry, 0, 0, 64, 64, &interactable_animation);
+    
     animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/flag.jpg");
     player(registry, 64, 64, &player_animation);
 

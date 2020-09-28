@@ -2,6 +2,8 @@
 logs/
 src/*.o
 src/test/*.o
+src/vendor/*.o
+src/object/*.o
 .vscode
 main
 main.dSYM

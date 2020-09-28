@@ -7,22 +7,22 @@ void player_tick(void* game_object, void* passthrough) {
 
     if(get_keydown(game->input, SDL_SCANCODE_W)) {
         this->y -= MOVE_SPEED;
-        if(check_collide(implementor))
+        if(check_collide(implementor->object))
             this->y += MOVE_SPEED;
     }
     if(get_keydown(game->input, SDL_SCANCODE_S)) {
         this->y += MOVE_SPEED;
-        if(check_collide(implementor))
+        if(check_collide(implementor->object))
             this->y -= MOVE_SPEED;
     }
     if(get_keydown(game->input, SDL_SCANCODE_A)) {
         this->x -= MOVE_SPEED;
-        if(check_collide(implementor))
+        if(check_collide(implementor->object))
             this->x += MOVE_SPEED;
     }
     if(get_keydown(game->input, SDL_SCANCODE_D)) {
         this->x += MOVE_SPEED;
-        if(check_collide(implementor))
+        if(check_collide(implementor->object))
             this->x -= MOVE_SPEED;
     }
 }

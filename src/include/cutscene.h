@@ -19,7 +19,7 @@ struct event_data {
 };
 
 typedef struct CUTSCENE_EVENT {
-    event_type type;
+    enum event_type type;
     void* data;
     bool executed;
 } cutscene_event_T;
