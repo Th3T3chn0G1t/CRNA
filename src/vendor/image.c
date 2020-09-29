@@ -50,7 +50,11 @@ uint32_t get_pixel(image_T* image, int x, int y) {
     }
 }
 
+
 void set_pixel(image_T* image, int x, int y, uint32_t pixel) {
-    uint8_t* target_pixel = (uint8_t*) image->surface->pixels + y * image->surface->pitch + x * sizeof(uint32_t);
-    *(uint32_t*) target_pixel = pixel;
+    if(x > -1 && x < image->surface->w)
+        if(y > -1 && y < image->surface->h) {
+            uint8_t* target_pixel = (uint8_t*) image->surface->pixels + y * image->surface->pitch + x * sizeof(uint32_t);
+            *(uint32_t*) target_pixel = pixel;
+        }
 }

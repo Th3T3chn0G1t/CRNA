@@ -5,6 +5,8 @@ context_T* context(image_T* image) {
     context_T* context = calloc(1, sizeof(struct CONTEXT));
     
     context->image = image;
+    context->offset_x = 0;
+    context->offset_y = 0;
 
     return context;
 }
@@ -13,19 +15,14 @@ void clear(context_T* context) {
     SDL_FillRect(context->image->surface, NULL, as_uint32(context->clear, context->image->surface->format));
 }
 
-void set_context_pixel(context_T* context, int x, int y, uint32_t pixel) {
-    uint8_t* target_pixel = (uint8_t*) context->image->surface->pixels + y * context->image->surface->pitch + x * sizeof(uint32_t);
-    *(uint32_t*) target_pixel = pixel;
-}
-
 void fill_rect(context_T* context, int x, int y, int width, int height) {
     SDL_LockSurface(context->image->surface);
 
+    x += context->offset_x;
+    y += context->offset_y;
     for(int i = x; i < x + width; i++)
         for(int j = y; j < y + height; j++)
-            if(i > -1 && i < context->image->surface->w)
-                if(j > -1 && j < context->image->surface->h)
-                    set_context_pixel(context, i, j, as_uint32(context->foreground, context->image->surface->format));
+            set_pixel(context->image, i, j, as_uint32(context->foreground, context->image->surface->format));
 
     SDL_UnlockSurface(context->image->surface);
 }
@@ -33,17 +30,16 @@ void fill_rect(context_T* context, int x, int y, int width, int height) {
 void draw_image(context_T* context, image_T* image, int x, int y) {
     SDL_LockSurface(context->image->surface);
 
+    x += context->offset_x;
+    y += context->offset_y;
     for(int i = x; i < x + image->surface->w; i++)
-        for(int j = y; j < y + image->surface->h; j++)
-            if(i > -1 && i < context->image->surface->w)
-                if(j > -1 && j < context->image->surface->h) {
-                    uint32_t pixel = get_pixel(image, i - x, j - y);
-                    if(((uint8_t*) &pixel)[3])
-                        set_context_pixel(context, i, j, pixel);
-                    else if(pixel) {
-                        set_context_pixel(context, i, j, as_uint32(context->foreground, context->image->surface->format));
-                    }
-                }   
+        for(int j = y; j < y + image->surface->h; j++) {
+            uint32_t pixel = get_pixel(image, i - x, j - y);
+            if(((uint8_t*) &pixel)[3])
+                set_pixel(context->image, i, j, pixel);
+            else if(pixel)
+                set_pixel(context->image, i, j, as_uint32(context->foreground, context->image->surface->format));
+        }   
 
     SDL_UnlockSurface(context->image->surface);
 }
@@ -66,3 +62,7 @@ void set_font(context_T* context, font_T* font) {
     context->font = font;
 }
 
+void set_offset(context_T* context, int x, int y) {
+    context->offset_x = x;
+    context->offset_y = y;
+}

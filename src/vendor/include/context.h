@@ -10,6 +10,8 @@ typedef struct CONTEXT {
     color_T* foreground;
 
     font_T* font;
+
+    int offset_x, offset_y;
 } context_T;
 
 /**
@@ -51,5 +53,10 @@ void set_color(context_T* context, color_T* color);
  * Sets the active font of the context
  */
 void set_font(context_T* context, font_T* font);
+
+/**
+ * Sets the offset at which drawing will occur
+ */
+void set_offset(context_T* context, int x, int y);
 
 #endif

@@ -16,6 +16,7 @@ $(exec): $(objects)
 clean:
 	@rm $(exec)
 	@rm $(objects)
+	@rm -rf $(exec).dSYM
 
 debug:
 	@make

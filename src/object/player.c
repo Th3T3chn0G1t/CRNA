@@ -25,6 +25,12 @@ void player_tick(void* game_object, void* passthrough) {
         if(check_collide(implementor->object))
             this->x -= MOVE_SPEED;
     }
+
+}
+
+void player_render(void* game_object, context_T* context, void* passthrough) {
+    draw_image(context, get_frame(((game_object_T*) game_object)->animation), ((game_object_T*) game_object)->x, ((game_object_T*) game_object)->y);
+    advance_frame(((game_object_T*) game_object)->animation);
 }
 
 player_T* player(node_T* registry, int x, int y, animation_T** animations) {
@@ -32,6 +38,7 @@ player_T* player(node_T* registry, int x, int y, animation_T** animations) {
 
     PLAYER->object = game_object(registry, x, y, 64, 64, animations[0]);
     set_ticking_function(PLAYER->object, player_tick);
+    set_render_function(PLAYER->object, player_render);
 
     PLAYER->animations = animations;
 

@@ -1,18 +1,17 @@
 #include "include/linked_list.h"
+#include "include/camera.h"
 #include "vendor/include/window.h"
+
 #include "object/include/player.h"
 #include "object/include/interactable.h"
 
-/*
- * A reference the the game object
- * This holds references to the drawing context, window and input handlers
- */
 game_T* game;
 
 node_T* registry;
 
+camera_T* cam;
+
 void frame() {
-    // Clears the screen before drawing using the game->context->clear color
     clear(game->context);
     
     node_T* current = registry;
@@ -23,6 +22,7 @@ void frame() {
           break;
 
         tick(o, game);
+        update_camera_pos(cam);
         render(o, game->context, game);
 
         if(!current->next)
@@ -32,27 +32,28 @@ void frame() {
 
     } while(1);
     
-    // Update the screen, window and input states 
     update(game);
 }
 
 int main(int argc, char** argv) {
-    // Initializes the game with a 1080x720 window in fullscreen with the title "SDL"
     game = init(1280, 800, false, "SDL");
     {
         set_decorated(game->window, false);
         set_position(game->window, 0, 0);    
     }
+
+    set_font(game->context, font("res/font/BPdotsSquareBold.ttf", 16));
     
-    game_object_T* object = game_object(NULL, 0, 0, 0, 0, direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/0x0.png"));
-    registry = node(object);
+    registry = node(game_object(NULL, 0, 0, 0, 0, direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/0x0.png")));
     
     animation_T* interactable_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/A.png");
-    interactable(registry, 0, 0, 64, 64, &interactable_animation);
+    interactable(registry, 512, 512, 64, 64, &interactable_animation);
     
-    animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/flag.jpg");
-    player(registry, 64, 64, &player_animation);
+    animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/B.png");
+    player(registry, 640, 400, &player_animation);
 
+    cam = camera(get(registry, 2), game->context);
+    
     // Rudimentary game loop
     start(frame, 60);
 }
