@@ -1,7 +1,7 @@
 #ifndef TEMPLATE_OBJECT_H
 #define TEMPLATE_OBJECT_H
 
-#include "../../include/game_object.h"
+#include "../../../engine/include/game_object.h"
 
 typedef struct TEMPLATE_OBJECT {
     game_object_T* object;

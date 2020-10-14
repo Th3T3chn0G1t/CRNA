@@ -1,7 +1,7 @@
 #ifndef INTERACTABLE_H
 #define INTERACTABLE_H
 
-#include "../../include/game_object.h"
+#include "../../../engine/include/game_object.h"
 
 typedef struct INTERACTABLE {
     game_object_T* object;

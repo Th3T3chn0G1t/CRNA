@@ -3,7 +3,7 @@
 
 #include "animation.h"
 #include "linked_list.h"
-#include "../vendor/include/context.h"
+#include "../vendor/sdl_wrapper/include/context.h"
 
 #include <stdbool.h>
 

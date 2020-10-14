@@ -1,6 +1,6 @@
-#include "include/linked_list.h"
-#include "include/camera.h"
-#include "vendor/include/window.h"
+#include "../engine/include/linked_list.h"
+#include "../engine/include/camera.h"
+#include "../engine/vendor/sdl_wrapper/include/window.h"
 
 #include "object/include/player.h"
 #include "object/include/interactable.h"
@@ -11,28 +11,27 @@ node_T* registry;
 
 camera_T* cam;
 
-void frame() {
-    clear(game->context);
-    
-    node_T* current = registry;
-    do {
-        game_object_T* o = (game_object_T*) current->data;
+bool update_object(void* data) {
+    game_object_T* o = (game_object_T*) data;
                 
-        if(!o)
-          break;
+    if(!o)
+        return false;
 
-        tick(o, game);
-        update_camera_pos(cam);
-        render(o, game->context, game);
+    tick(o, game);
+    update_camera_pos(cam);
+    render(o, game->context, game);
+    
+    return true;
+}
 
-        if(!current->next)
-            break;
-            
-        current = current->next;
+uint32_t frame_callback(uint32_t time, void* pass) {
+    clear(game->context);
 
-    } while(1);
+    foreach(registry, update_object);
     
     update(game);
+
+    return time;
 }
 
 int main(int argc, char** argv) {
@@ -46,14 +45,14 @@ int main(int argc, char** argv) {
     
     registry = node(game_object(NULL, 0, 0, 0, 0, direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/0x0.png")));
     
-    animation_T* interactable_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/A.png");
+    animation_T* interactable_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/noteTable.png");
     interactable(registry, 512, 512, 64, 64, &interactable_animation);
     
-    animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/B.png");
+    animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/temp.jpg");
     player(registry, 640, 400, &player_animation);
 
     cam = camera(get(registry, 2), game->context);
     
     // Rudimentary game loop
-    start(frame, 60);
+    start(frame_callback, 60);
 }

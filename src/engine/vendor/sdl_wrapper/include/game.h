@@ -22,7 +22,7 @@ game_T* init(int width, int height, bool fullscreen, char* title);
 /**
  * Sets up a loop to call func at n calls per second roughly
  */
-void start(void (*func) (void), int n);
+void start(uint32_t (*func) (uint32_t time, void* pass), int n);
 
 /**
  * Updates input and renders the context to the window

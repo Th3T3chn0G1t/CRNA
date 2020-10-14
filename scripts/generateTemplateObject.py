@@ -25,7 +25,7 @@ header = header.replace("TEMPLATE_OBJECT", name.upper())
 header = header.replace("template_object_T", name + "_T")
 header = header.replace("template_object(", name + "(")
 
-write_file("src/object/include/" + name + ".h", header)
+write_file("src/game/object/include/" + name + ".h", header)
 
 
 source = read_file("res/templates/template_object.c", '')
@@ -37,4 +37,4 @@ source = source.replace("template_object_tick", name + "_tick")
 source = source.replace("template_object_on_collide", name + "_on_collide")
 source = source.replace("template_object.h", "include/" + name + ".h")
 
-write_file("src/object/" + name + ".c", source)
+write_file("src/game/object/" + name + ".c", source)

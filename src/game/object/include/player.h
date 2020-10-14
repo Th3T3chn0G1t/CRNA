@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../../include/game_object.h"
-#include "../../vendor/include/game.h"
+#include "../../../engine/include/game_object.h"
+#include "../../../engine/vendor/sdl_wrapper/include/game.h"
 
 #define MOVE_SPEED 4
 

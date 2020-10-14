@@ -1,7 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "../vendor/include/image.h"
+#include "../vendor/sdl_wrapper/include/image.h"
 
 typedef struct ANIMATION {
     image_T** frames;

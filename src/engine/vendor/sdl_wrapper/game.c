@@ -11,6 +11,9 @@ game_T* init(int width, int height, bool fullscreen, char* title) {
     game_T* GAME = calloc(1, sizeof(struct GAME));
 
     SDL_Init(SDL_INIT_VIDEO);
+    #ifndef __APPLE__
+        SDL_Init(SDL_INIT_TIMER);
+    #endif
 
     TTF_Init();
 
@@ -32,12 +35,20 @@ game_T* init(int width, int height, bool fullscreen, char* title) {
     return GAME;
 }
 
-void start(void (*func) (void), int n) {
+void start(uint32_t (*func) (uint32_t time, void* pass), int n) {
     int delay = 1000 / n;
-    while(1) {
-        func();
-        SDL_Delay(delay);
-    }
+
+    #ifdef __APPLE__
+       /* 
+        * Apple doesn't like SDL threading
+        */
+        while(1) {
+            func(0, NULL);
+            SDL_Delay(delay);
+        }
+    #else
+        SDL_AddTimer(delay, func, NULL);
+    #endif    
 }
 
 void update(game_T* game) {

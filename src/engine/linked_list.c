@@ -32,3 +32,16 @@ void set(node_T* registry, int index, void* data) {
 
     registry->data = data;
 }
+
+void foreach(node_T* registry, bool (*func) (void* data)) {
+    node_T* current = registry;
+    do {
+        if(!func(current->data))
+            break;
+
+        if(!current->next)
+            break;
+            
+        current = current->next;
+    } while(1);
+}
