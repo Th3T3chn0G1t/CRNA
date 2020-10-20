@@ -1,9 +1,6 @@
 .DS_Store
 logs/
-src/*.o
-src/test/*.o
-src/vendor/*.o
-src/object/*.o
+*.o
 .vscode
 main
 main.dSYM
