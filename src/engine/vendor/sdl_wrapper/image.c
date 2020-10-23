@@ -1,11 +1,9 @@
 #include "include/image.h"
 
+#include <assert.h>
 #include <SDL2/SDL_image.h>
 
 image_T* surface_image(SDL_Surface* surface) {
-    if(!surface)
-        fputs("The provided surface is invalid! Check your file paths\n", stderr);
-
     image_T* IMAGE = calloc(1, sizeof(struct IMAGE));
 
     IMAGE->surface = surface;

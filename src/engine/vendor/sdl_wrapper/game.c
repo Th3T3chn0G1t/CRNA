@@ -1,4 +1,5 @@
 #include "include/game.h"
+#include "SDL2/SDL_image.h"
 
 #ifdef __APPLE__
     #define IGNORE_0 '-'
@@ -65,6 +66,16 @@ void update(game_T* game) {
                 return;
         #endif
 
+        fprintf(stderr, "An unknown error occurred during the frame: %s\n", err); 
+        exit(-1);
+    }
+    
+    for(const char* err = TTF_GetError(); *err; err = TTF_GetError()) {
+        fprintf(stderr, "An unknown error occurred during the frame: %s\n", err); 
+        exit(-1);
+    }
+
+    for(const char* err = IMG_GetError(); *err; err = IMG_GetError()) {
         fprintf(stderr, "An unknown error occurred during the frame: %s\n", err); 
         exit(-1);
     }

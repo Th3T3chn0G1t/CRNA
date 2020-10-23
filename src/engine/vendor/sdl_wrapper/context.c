@@ -45,6 +45,9 @@ void draw_image(context_T* context, image_T* image, int x, int y) {
 }
 
 void draw_string(context_T* context, const char* str, int x, int y) {
+    if(!strlen(str))
+        return;
+
     image_T* txt = text(context->font, str, context->foreground);
 
     draw_image(context, txt, x, y);

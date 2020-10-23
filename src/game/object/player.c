@@ -1,9 +1,18 @@
 #include "include/player.h"
+#include "../include/dialog.h"
 
 void player_tick(void* game_object, void* passthrough) {
     game_object_T* this = (game_object_T*) game_object;
     player_T* implementor = (player_T*) this->implementor;
     game_T* game = (game_T*) passthrough;
+
+    if(get_keydown(game->input, SDL_SCANCODE_N)) {
+        implementor->controls_locked = false;
+        hide_dialog();
+    }
+
+    if(implementor->controls_locked)
+        return;
 
     if(get_keydown(game->input, SDL_SCANCODE_W)) {
         this->y -= MOVE_SPEED;

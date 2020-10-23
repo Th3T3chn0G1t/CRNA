@@ -1,14 +1,25 @@
 #include "include/interactable.h"
+#include "include/player.h"
+#include "../include/dialog.h"
 
 void interactable_tick(void* game_object, void* passthrough) {
     interactable_T* this = (interactable_T*) ((game_object_T* ) game_object)->implementor;
 }
 
 bool interactable_on_collide(void* game_object, void* other) {
+    interactable_T* this = ((game_object_T*) game_object)->implementor;
+    show_dialog(this->msg[this->current_msg + 1]);
+
+    this->current_msg++;
+    if(this->current_msg == (int) this->msg[0])
+        this->current_msg--;
+
+    ((player_T*) (((game_object_T*) other)->implementor))->controls_locked = true;
+
     return true;
 }
 
-interactable_T* interactable(node_T* registry, int x, int y, int width, int height, animation_T** states) {
+interactable_T* interactable(node_T* registry, int x, int y, int width, int height, char** msg, animation_T** states) {
     interactable_T* template_object = calloc(1, sizeof(struct INTERACTABLE));
 
     template_object->object = game_object(registry, x, y, width, height, *states);
@@ -19,6 +30,7 @@ interactable_T* interactable(node_T* registry, int x, int y, int width, int heig
     }
 
     template_object->states = states;
+    template_object->msg = msg;
 
     return template_object;
 }

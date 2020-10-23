@@ -4,6 +4,7 @@
 
 #include "object/include/player.h"
 #include "object/include/interactable.h"
+#include "include/dialog.h"
 
 game_T* game;
 
@@ -29,6 +30,8 @@ uint32_t frame_callback(uint32_t time, void* pass) {
 
     foreach(registry, update_object);
     
+    render_dialog(game->context);
+
     update(game);
 
     return time;
@@ -45,8 +48,9 @@ int main(int argc, char** argv) {
     
     registry = node(game_object(NULL, 0, 0, 0, 0, direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/0x0.png")));
     
+    char* msg[] = {(char*) 4, "This", "is", "a", "test"};
     animation_T* interactable_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/noteTable.png");
-    interactable(registry, 512, 512, 64, 64, &interactable_animation);
+    interactable(registry, 512, 512, 64, 64, msg, &interactable_animation);
     
     animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/temp.jpg");
     player(registry, 640, 400, &player_animation);
