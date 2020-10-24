@@ -3,8 +3,18 @@
 
 #include <SDL2/SDL_ttf.h>
 
+typedef struct FONT_METRICS {
+    int minx;
+    int miny;
+    int maxx;
+    int maxy;
+    int advance;
+} font_metrics_T;
+
 typedef struct FONT {
     TTF_Font* font;
+
+    font_metrics_T* metrics;
 } font_T;
 
 /**

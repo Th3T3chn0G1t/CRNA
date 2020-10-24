@@ -7,12 +7,18 @@ image_T* surface_image(SDL_Surface* surface) {
     image_T* IMAGE = calloc(1, sizeof(struct IMAGE));
 
     IMAGE->surface = surface;
+    if(!IMAGE->surface)
+        fprintf(stderr, "Failed to create image from surface: %s\n", IMG_GetError());
 
     return IMAGE;   
 }
 
 image_T* image(const char* path, SDL_PixelFormat* format) {
-    return surface_image(SDL_ConvertSurface(IMG_Load(path), format, 0));
+    SDL_Surface* surface = IMG_Load(path);
+    if(!surface)
+        fprintf(stderr, "Failed to load image %s: %s\n", path, IMG_GetError());
+
+    return surface_image(SDL_ConvertSurface(surface, format, 0));
 }
 
 image_T* text(font_T* font, const char* str, color_T* color) {

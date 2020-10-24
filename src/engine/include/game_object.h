@@ -21,7 +21,7 @@ typedef struct GAME_OBJECT {
     node_T* registry;
 } game_object_T;
 
-game_object_T* game_object(node_T* registry, int x, int y, int width, int height, animation_T* animation);
+game_object_T* game_object(node_T** registry, int x, int y, int width, int height, animation_T* animation);
 
 void tick(game_object_T* o, void* passthrough);
 

@@ -19,7 +19,7 @@ bool interactable_on_collide(void* game_object, void* other) {
     return true;
 }
 
-interactable_T* interactable(node_T* registry, int x, int y, int width, int height, char** msg, animation_T** states) {
+interactable_T* interactable(node_T** registry, int x, int y, int width, int height, char** msg, animation_T** states) {
     interactable_T* template_object = calloc(1, sizeof(struct INTERACTABLE));
 
     template_object->object = game_object(registry, x, y, width, height, *states);

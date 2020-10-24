@@ -1,6 +1,8 @@
 #include "include/context.h"
 #include "include/logger.h"
 
+#include <assert.h>
+
 context_T* context(image_T* image) {
     context_T* context = calloc(1, sizeof(struct CONTEXT));
     
@@ -37,8 +39,6 @@ void draw_image(context_T* context, image_T* image, int x, int y) {
             uint32_t pixel = get_pixel(image, i - x, j - y);
             if(((uint8_t*) &pixel)[3])
                 set_pixel(context->image, i, j, pixel);
-            else if(pixel)
-                set_pixel(context->image, i, j, as_uint32(context->foreground, context->image->surface->format));
         }   
 
     SDL_UnlockSurface(context->image->surface);
@@ -51,6 +51,15 @@ void draw_string(context_T* context, const char* str, int x, int y) {
     image_T* txt = text(context->font, str, context->foreground);
 
     draw_image(context, txt, x, y);
+}
+
+void draw_string_bounded(context_T* context, const char* str, int x, int y, int width) {
+    // Ensure string to draw is valid 
+    assert(str);
+    if(!strlen(str))
+        return;
+
+    draw_image(context, surface_image(TTF_RenderText_Blended_Wrapped(context->font->font, str, as_sdlcolor(context->foreground), width)), x, y);
 }
 
 void set_clear(context_T* context, color_T* color) {

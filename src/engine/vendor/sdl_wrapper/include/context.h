@@ -40,6 +40,11 @@ void draw_image(context_T* context, image_T* image, int x, int y);
 void draw_string(context_T* context, const char* str, int x, int y);
 
 /**
+ * Draws the given string str to the surface at the given position using the current foreground color
+ */
+void draw_string_bounded(context_T* context, const char* str, int x, int y, int width);
+
+/**
  * Sets the clear color of the context
  */
 void set_clear(context_T* context, color_T* color);

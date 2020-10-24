@@ -1,6 +1,6 @@
 #include "include/game_object.h"
 
-game_object_T* game_object(node_T* registry, int x, int y, int width, int height, animation_T* animation) {
+game_object_T* game_object(node_T** registry, int x, int y, int width, int height, animation_T* animation) {
     game_object_T* object = calloc(1, sizeof(struct GAME_OBJECT));
 
     object->x = x;
@@ -10,11 +10,13 @@ game_object_T* game_object(node_T* registry, int x, int y, int width, int height
     object->animation = animation;
     object->blacklisted = false;
 
-    if(registry) {
-        add(registry, object);
-        object->registry = registry;
-    }
-
+    if(*registry) {
+        add(*registry, object);
+        object->registry = *registry;
+    } 
+    else
+        *registry = node(object);
+    
     return object;
 }
 

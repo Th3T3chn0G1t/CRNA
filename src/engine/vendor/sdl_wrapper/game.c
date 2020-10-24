@@ -12,6 +12,7 @@ game_T* init(int width, int height, bool fullscreen, char* title) {
     game_T* GAME = calloc(1, sizeof(struct GAME));
 
     SDL_Init(SDL_INIT_VIDEO);
+
     #ifndef __APPLE__
         SDL_Init(SDL_INIT_TIMER);
     #endif
@@ -36,7 +37,30 @@ game_T* init(int width, int height, bool fullscreen, char* title) {
     return GAME;
 }
 
+bool check_errors(const char* prefix, bool should_exit) {
+    bool found_errors = false;
+    for(const char* err = SDL_GetError(); *err; err = SDL_GetError()) {
+        found_errors = true;
+        /*
+         * Fixing the bug being queried here: https://stackoverflow.com/questions/63983054/sdl-geterror-returning-an-undocumented-error-on-macos
+         * Ignore errors with the following message "Unknown touch device id -1, cannot reset"
+         */
+        #ifdef __APPLE__
+            if(err[IGNORE_0_INDEX] == IGNORE_0 && err[IGNORE_1_INDEX] == IGNORE_1)
+                return false;
+        #endif
+
+        fprintf(stderr, "%s %s\n", prefix ? prefix : "An unknown error occurred:", err); 
+        if(should_exit)
+            exit(-1);
+    }
+
+    return found_errors;
+}
+
 void start(uint32_t (*func) (uint32_t time, void* pass), int n) {
+    check_errors("Failed to load correctly: ", true);
+    
     int delay = 1000 / n;
 
     #ifdef __APPLE__
@@ -55,28 +79,5 @@ void start(uint32_t (*func) (uint32_t time, void* pass), int n) {
 void update(game_T* game) {
     fetch(game->input);
     poll(game->window);
-
-    for(const char* err = SDL_GetError(); *err; err = SDL_GetError()) {
-        /*
-         * Fixing the bug being queried here: https://stackoverflow.com/questions/63983054/sdl-geterror-returning-an-undocumented-error-on-macos
-         * Ignore errors with the following message "Unknown touch device id -1, cannot reset"
-         */
-        #ifdef __APPLE__
-            if(err[IGNORE_0_INDEX] == IGNORE_0 && err[IGNORE_1_INDEX] == IGNORE_1)
-                return;
-        #endif
-
-        fprintf(stderr, "An unknown error occurred during the frame: %s\n", err); 
-        exit(-1);
-    }
-    
-    for(const char* err = TTF_GetError(); *err; err = TTF_GetError()) {
-        fprintf(stderr, "An unknown error occurred during the frame: %s\n", err); 
-        exit(-1);
-    }
-
-    for(const char* err = IMG_GetError(); *err; err = IMG_GetError()) {
-        fprintf(stderr, "An unknown error occurred during the frame: %s\n", err); 
-        exit(-1);
-    }
+    check_errors(NULL, true);
 }

@@ -11,6 +11,6 @@ typedef struct INTERACTABLE {
     int current_msg;
 } interactable_T;
 
-interactable_T* interactable(node_T* registry, int x, int y, int width, int height, char** msg, animation_T** animation);
+interactable_T* interactable(node_T** registry, int x, int y, int width, int height, char** msg, animation_T** animation);
 
 #endif

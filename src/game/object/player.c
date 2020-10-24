@@ -42,7 +42,7 @@ void player_render(void* game_object, context_T* context, void* passthrough) {
     advance_frame(((game_object_T*) game_object)->animation);
 }
 
-player_T* player(node_T* registry, int x, int y, animation_T** animations) {
+player_T* player(node_T** registry, int x, int y, animation_T** animations) {
     player_T* PLAYER = calloc(1, sizeof(struct PLAYER));
 
     PLAYER->object = game_object(registry, x, y, 64, 64, animations[0]);

@@ -42,20 +42,35 @@ int main(int argc, char** argv) {
     {
         set_decorated(game->window, false);
         set_position(game->window, 0, 0);    
+
+        set_font(game->context, font("res/font/BPdotsSquareBold.ttf", 16));
     }
 
-    set_font(game->context, font("res/font/BPdotsSquareBold.ttf", 16));
-    
-    registry = node(game_object(NULL, 0, 0, 0, 0, direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/0x0.png")));
-    
-    char* msg[] = {(char*) 4, "This", "is", "a", "test"};
+    char* msg[] = {(char*) 15, 
+        "It is a table  (Press N to continue)",
+        "It is still a table",
+        "Yep, a table",
+        "You really love interacting with this table",
+        "The table is beginning to feel uncomfortable",
+        "The table is considering legal action",
+        "The table is in table court",
+        "The table has a restraining order",
+        "You can't be here!",
+        "Stop in the name of the law!",
+        "The table is beyond caring",
+        "The table has accepted its fate",
+        "Wait, what is this again?",
+        "Oh yeah, it's a table",
+        "It is a table"
+    };
+
     animation_T* interactable_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/noteTable.png");
-    interactable(registry, 512, 512, 64, 64, msg, &interactable_animation);
+    interactable(&registry, 512, 512, 64, 64, msg, &interactable_animation);
     
     animation_T* player_animation = direct_load_animation(game->context->image->surface->format, 0, 1, "res/img/temp.jpg");
-    player(registry, 640, 400, &player_animation);
+    player(&registry, 640, 400, &player_animation);
 
-    cam = camera(get(registry, 2), game->context);
+    cam = camera(get(registry, 1), game->context);
     
     // Rudimentary game loop
     start(frame_callback, 60);

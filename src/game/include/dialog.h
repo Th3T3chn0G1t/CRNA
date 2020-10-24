@@ -13,7 +13,6 @@
 
 static char* msg;
 static int current_char;
-static int chars_per_line;
 static bool visible;
 
 void render_dialog(context_T* ctx);

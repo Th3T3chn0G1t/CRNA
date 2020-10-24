@@ -13,6 +13,6 @@ typedef struct PLAYER {
     bool controls_locked;
 } player_T;
 
-player_T* player(node_T* registry, int x, int y, animation_T** animations);
+player_T* player(node_T** registry, int x, int y, animation_T** animations);
 
 #endif

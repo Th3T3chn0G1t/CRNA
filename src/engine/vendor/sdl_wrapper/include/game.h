@@ -20,6 +20,14 @@ typedef struct GAME {
 game_T* init(int width, int height, bool fullscreen, char* title);
 
 /**
+ * Polls for and logs SDL & SDL library errors
+ * Prefix is a message to be placed before the logged error
+ * Should exit determines whether the program should exit if an error is found
+ * Returns whether an error was found
+ */
+bool check_errors(const char* prefix, bool should_exit);
+
+/**
  * Sets up a loop to call func at n calls per second roughly
  */
 void start(uint32_t (*func) (uint32_t time, void* pass), int n);
