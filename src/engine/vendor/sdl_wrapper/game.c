@@ -58,7 +58,7 @@ bool check_errors(const char* prefix, bool should_exit) {
     return found_errors;
 }
 
-void start(uint32_t (*func) (uint32_t time, void* pass), int n) {
+void start(uint32_t (*func) (uint32_t time, void* pass), int n, void* pass) {
     check_errors("Failed to load correctly: ", true);
     
     int delay = 1000 / n;
@@ -68,11 +68,13 @@ void start(uint32_t (*func) (uint32_t time, void* pass), int n) {
         * Apple doesn't like SDL threading
         */
         while(1) {
-            func(0, NULL);
+            func(0, pass);
+            
             SDL_Delay(delay);
         }
     #else
-        SDL_AddTimer(delay, func, NULL);
+        // TODO Return condition
+        SDL_AddTimer(delay, func, pass);
     #endif    
 }
 

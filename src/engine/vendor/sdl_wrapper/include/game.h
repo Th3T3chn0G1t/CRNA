@@ -6,9 +6,6 @@
 #include "input.h"
 
 typedef struct GAME {
-    int framerate;
-    int tickrate;
-
     context_T* context;
     window_T* window;
     input_T* input;
@@ -30,7 +27,7 @@ bool check_errors(const char* prefix, bool should_exit);
 /**
  * Sets up a loop to call func at n calls per second roughly
  */
-void start(uint32_t (*func) (uint32_t time, void* pass), int n);
+void start(uint32_t (*func) (uint32_t time, void* pass), int n, void* pass);
 
 /**
  * Updates input and renders the context to the window

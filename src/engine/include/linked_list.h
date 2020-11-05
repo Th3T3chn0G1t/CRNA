@@ -16,6 +16,8 @@ void* get(node_T* registry, int index);
 
 void set(node_T* registry, int index, void* data);
 
-void foreach(node_T* registry, bool (*func) (void* data));
+void foreach(node_T* registry, bool (*func) (void*, void*), void* pass);
+
+int length(node_T* registry);
 
 #endif

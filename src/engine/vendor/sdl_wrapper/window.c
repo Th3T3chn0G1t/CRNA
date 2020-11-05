@@ -15,11 +15,7 @@ void poll(window_T* window) {
     while(SDL_PollEvent(&e))
         switch(e.type) {
             case SDL_QUIT: {
-                SDL_DestroyWindow(window->window);
-                SDL_Quit();
-
                 exit(0);
-
                 break;
             }
         }
