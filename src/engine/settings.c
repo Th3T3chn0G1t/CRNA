@@ -33,6 +33,9 @@ static int handler(void* pass, const char* section, const char* key, const char*
     else if(MATCH_KEYPAIR("rendering", "font_size"))
         settings->font_size = atoi(value);
 
+    else if(MATCH_KEYPAIR("debug", "log_output_pattern"))
+        settings->log_output_pattern = strdup(value);
+
     else
         return 0;
 
@@ -42,8 +45,7 @@ static int handler(void* pass, const char* section, const char* key, const char*
 settings_T* settings_load(const char* file) {
     settings_T* settings = calloc(1, sizeof(struct SETTINGS));
 
-    if(ini_parse(file, handler, settings))
-        assert(0);
-
+    ini_parse(file, handler, settings);
+    
     return settings;
 }

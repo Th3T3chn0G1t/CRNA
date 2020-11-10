@@ -1,4 +1,6 @@
 #include "include/game.h"
+#include "include/logger.h"
+
 #include "SDL2/SDL_image.h"
 
 #ifdef __APPLE__
@@ -50,7 +52,9 @@ bool check_errors(const char* prefix, bool should_exit) {
                 return false;
         #endif
 
-        fprintf(stderr, "%s %s\n", prefix ? prefix : "An unknown error occurred:", err); 
+        char msg[255];
+        sprintf(msg, "%s %s\n", prefix ? prefix : "An unknown error occurred:", err); 
+        error(msg);
         if(should_exit)
             exit(-1);
     }

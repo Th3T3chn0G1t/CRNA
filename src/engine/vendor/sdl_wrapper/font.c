@@ -1,4 +1,5 @@
 #include "include/font.h"
+#include "include/logger.h"
 
 font_T* font(const char* path, int size) {
     font_T* FONT = calloc(1, sizeof(struct FONT));
@@ -10,7 +11,9 @@ font_T* font(const char* path, int size) {
         TTF_GlyphMetrics(FONT->font, 'a', &FONT->metrics->minx, &FONT->metrics->maxx, &FONT->metrics->miny, &FONT->metrics->maxy, &FONT->metrics->advance);
     }
     else {
-        fprintf(stderr, "Failed to load font %s: %s\n", path, TTF_GetError());
+        char msg[127];
+        sprintf(msg, "Failed to load font %s: %s\n", path, TTF_GetError());
+        error(msg);
     }
     
     return FONT;

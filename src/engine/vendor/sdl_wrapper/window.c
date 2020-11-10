@@ -15,6 +15,8 @@ void poll(window_T* window) {
     while(SDL_PollEvent(&e))
         switch(e.type) {
             case SDL_QUIT: {
+                info("Quit requested by user");
+                // TODO Are you sure? + saving
                 exit(0);
                 break;
             }

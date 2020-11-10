@@ -1,87 +1,49 @@
 #include <stdlib.h>
 #include "include/logger.h"
 
-logger_T* init_logger(const char* path) {
-    logger_T* logger = calloc(1, sizeof(struct LOGGER));
-    logger->file = fopen(path, "w+");
-    return logger;
+static logger_T* LOGGER;
+
+void init_logger(const char* path) {
+    LOGGER = calloc(1, sizeof(struct LOGGER));
+    LOGGER->file = fopen(path, "w+");
 }
 
 void log_base(const char* prefix, const char* str, int mode, int target, FILE* file) {
-    switch(mode) {
-        case VERBOSE:
-            fputs(prefix, target == STDOUT ? stdout : stderr);
-            fputs(str, target == STDOUT ? stdout : stderr);
-            fputs("\n", target == STDOUT ? stdout : stderr);
+    if(mode != VERBOSE)
+        return;
 
-            if(file) {
-            fputs(prefix, file);
-            fputs(str, file);
-            fputs("\n", file);
-            }
-            break;
-        case SILENT:
-            return;
-            break;
+    fputs(prefix, target == STDOUT ? stdout : stderr);
+    fputs(str, target == STDOUT ? stdout : stderr);
+    fputs("\n", target == STDOUT ? stdout : stderr);
+
+    if(file) {
+        fputs(prefix, file);
+        fputs(str, file);
+        fputs("\n", file);
     }
 }
 
-void performance(logger_T* logger, const char* str) {
-    if(logger)
-        log_base("PERF: ", str, logger->performance_mode, STDOUT, logger->file);
+void performance(const char* str) {
+    log_base("PERFORMANCE: ", str, LOGGER->performance_mode, STDOUT, LOGGER->file);
 }
 
-void debug(logger_T* logger, const char* str) {
-    if(logger)
-        log_base("DEBG: ", str, logger->debug_mode, STDOUT, logger->file);
+void debug(const char* str) {
+    log_base("DEBUG: ", str, LOGGER->debug_mode, STDOUT, LOGGER->file);
 }
 
-void info(logger_T* logger, const char* str) {
-    if(logger)
-        log_base("INFO: ", str, logger->info_mode, STDOUT, logger->file);
+void info(const char* str) {
+    log_base("INFO: ", str, LOGGER->info_mode, STDOUT, LOGGER->file);
 }
 
-void warning(logger_T* logger, const char* str) {
-    if(logger)
-        log_base("WARN: ", str, logger->warning_mode, STDERR, logger->file);    
+void warning(const char* str) {
+    log_base("WARNING: ", str, LOGGER->warning_mode, STDERR, LOGGER->file);    
 }
 
-void error(logger_T* logger, const char* str) {
-    if(logger)
-        log_base("EROR: ", str, logger->error_mode, STDERR, logger->file);    
+void error(const char* str) {
+    log_base("ERROR: ", str, LOGGER->error_mode, STDERR, LOGGER->file);    
 }
 
-void fatal(logger_T* logger, const char* str) {
-    if(logger)
-        log_base("FATL: ", str, logger->fatal_mode, STDERR, logger->file);    
+void fatal(const char* str) {
+    log_base("FATAL: ", str, LOGGER->fatal_mode, STDERR, LOGGER->file);    
     exit(-1);
-}
-
-void test_all(logger_T* logger) {
-    logger->performance_mode = SILENT;
-    performance(logger, "performance");
-    logger->performance_mode = VERBOSE;
-    performance(logger, "performance");
-
-    logger->debug_mode = SILENT;
-    debug(logger, "debug");
-    logger->debug_mode = VERBOSE;
-    debug(logger, "debug");
-
-    logger->info_mode = SILENT;
-    info(logger, "info");
-    logger->info_mode = VERBOSE;
-    info(logger, "info");
-
-    logger->warning_mode = SILENT;
-    warning(logger, "warning");
-    logger->warning_mode = VERBOSE;
-    warning(logger, "warning");
-
-    logger->error_mode = SILENT;
-    error(logger, "error");
-    logger->error_mode = VERBOSE;
-    error(logger, "error");
-
-    fatal(logger, "fatal");
 }

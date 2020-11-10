@@ -21,17 +21,15 @@ typedef struct LOGGER {
 
 void shutdown_logger();
 
-logger_T* init_logger(const char* path);
+void init_logger(const char* path);
 
 void log_base(const char* prefix, const char* str, int mode, int target, FILE* file);
 
-void performance(logger_T* LOGGER, const char* str);
-void debug(logger_T* LOGGER, const char* str);
-void info(logger_T* LOGGER, const char* str);
-void warning(logger_T* LOGGER, const char* str);
-void error(logger_T* LOGGER, const char* str);
-void fatal(logger_T* LOGGER, const char* str);
-
-void test_all(logger_T* LOGGER);
+void performance(const char* str);
+void debug(const char* str);
+void info(const char* str);
+void warning(const char* str);
+void error(const char* str);
+void fatal(const char* str);
 
 #endif

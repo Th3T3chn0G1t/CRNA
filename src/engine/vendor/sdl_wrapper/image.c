@@ -1,4 +1,5 @@
 #include "include/image.h"
+#include "include/logger.h"
 
 #include <assert.h>
 #include <SDL2/SDL_image.h>
@@ -7,16 +8,22 @@ image_T* surface_image(SDL_Surface* surface) {
     image_T* IMAGE = calloc(1, sizeof(struct IMAGE));
 
     IMAGE->surface = surface;
-    if(!IMAGE->surface)
-        fprintf(stderr, "Failed to create image from surface: %s\n", IMG_GetError());
+    if(!IMAGE->surface) {
+        char msg[127];
+        sprintf(msg, "Failed to create image from surface: %s", IMG_GetError());
+        error(msg);
+    }
 
     return IMAGE;   
 }
 
 image_T* image(const char* path, SDL_PixelFormat* format) {
     SDL_Surface* surface = IMG_Load(path);
-    if(!surface)
-        fprintf(stderr, "Failed to load image %s: %s\n", path, IMG_GetError());
+    if(!surface) {
+        char msg[127];
+        sprintf(msg, "Failed to load image %s: %s", path, IMG_GetError());
+        error(msg);
+    }
 
     return surface_image(SDL_ConvertSurface(surface, format, 0));
 }

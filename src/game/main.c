@@ -48,7 +48,7 @@ bool on_update(game_T* game, node_T* registry, camera_controller_T* camera) {
 }
 
 void on_destroy(node_T* registry) {
-    printf("Shutting down...\n");
+    info("Shutting down...\n");
 }
 
 int main(int argc, char** argv) {

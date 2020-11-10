@@ -51,6 +51,12 @@ void crna_init(start_function_T, update_function_T, destroy_function_T) {
 
     CRNA->settings = settings_load(".crna/game_settings.ini");
 
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    char pattern[255];
+    sprintf(pattern, CRNA->settings->log_output_pattern, CRNA->settings->title, tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    init_logger(pattern);
+
     CRNA->game = init(CRNA->settings->resX, CRNA->settings->resY, CRNA->settings->fullscreen, CRNA->settings->title);
     {
         set_decorated(CRNA->game->window, CRNA->settings->decorated);
@@ -70,7 +76,9 @@ void crna_init(start_function_T, update_function_T, destroy_function_T) {
 }
 
 void print_gamestate_info() {
-        printf(
+    char msg[1024];
+    sprintf(
+        msg,
 "\
 Gamestate Information\n\
 \n\
@@ -111,4 +119,5 @@ Camera Controller:\n\
         CRNA->cam->control ? "Valid" : "Invalid",
         CRNA->cam->latch ? "Valid" : "Invalid"
     );
+    debug(msg);
 }

@@ -14,6 +14,7 @@ typedef struct SETTINGS {
     int framerate;
     char* font;
     int font_size;
+    char* log_output_pattern;
 } settings_T;
 
 settings_T* settings_load(const char* file);
