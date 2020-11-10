@@ -35,17 +35,52 @@ void exit_callback() {
     SDL_Quit();
 }
 
-void on_close_signal_received(int signal) {
-    exit(0);
+const static char* SIGNAL_NAMES[32] = {
+    "Invalid Signal",
+    "Host Process Hangup",
+    "User Interrupt",
+    "Quit",
+    "Illegal Instruction",
+    "Trace Trap",
+    "Abort",
+    "Bus Error",
+    "Floating-Point Error",
+    "Invalid Signal Handler Call SIGKILL",
+    "User Signal 1",
+    "Segmentation Fault",
+    "User Signal 2",
+    "Broken Pipe",
+    "Alarm",
+    "Terminate",
+    "Stack Fault",
+    "Child Process Changed",
+    "Continue",
+    "Invalid Signal Handler Call SIGSTOP",
+    "Stop",
+    "Read from TTY",
+    "Write to TTY",
+    "Urgent Condition on Socket",
+    "CPU Limit Exceeded",
+    "File Size Limit Exceeded",
+    "Timer Expired",
+    "Timer Expired",
+    "Window Size Changed",
+    "IO Available",
+    "Power Failure",
+    "Bad Syscall"
+};
+
+void on_signal_received(int signal) {
+    fatal(SIGNAL_NAMES[signal]);
 }
 
 void crna_init(start_function_T, update_function_T, destroy_function_T) {
     atexit(exit_callback);
 
-    signal(SIGTERM, on_close_signal_received);
-    signal(SIGQUIT, on_close_signal_received);
-    signal(SIGINT, on_close_signal_received);
-    signal(SIGABRT, on_close_signal_received);
+    #ifdef __APPLE__
+        for(int i = 1; i != __DARWIN_NSIG; i++)
+            signal(i, on_signal_received);
+    #endif
 
     CRNA = calloc(1, sizeof(struct CRNA));
 

@@ -8,11 +8,10 @@ void interactable_tick(void* game_object, void* passthrough) {
 
 bool interactable_on_collide(void* game_object, void* other) {
     interactable_T* this = ((game_object_T*) game_object)->implementor;
-    show_dialog(this->msg[this->current_msg + 1]);
-
-    this->current_msg++;
-    if(this->current_msg == (int) this->msg[0])
+    if(!this->msg[this->current_msg])
         this->current_msg--;
+    show_dialog(this->msg[this->current_msg]);
+    this->current_msg++;
 
     ((player_T*) (((game_object_T*) other)->implementor))->controls_locked = true;
 

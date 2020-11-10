@@ -15,8 +15,9 @@ $(exec): $(objects)
 	@$(compiler) -c $(inih_flags) $(flags) $< -o $@
 
 clean:
-	@rm $(exec)
 	@rm $(objects)
+	@rm logs/*
+	@rm $(exec)
 	@rm -rf $(exec).dSYM
 
 debug:
