@@ -65,7 +65,7 @@ documentation: ### Generates documentation for sources (Doxygen)
 	@doxygen Doxyfile
 
 get-deps:
-	sudo apt-get install libsdl2-dev libsdl_ttf2.0-dev libsdl_img2.0-dev
+	sudo apt-get install libsdl2-dev libsdl-ttf2.0-dev libsdl-img2.0-dev
 
 # Generate docs from targets
 help: ### Show this list 
