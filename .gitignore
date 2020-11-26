@@ -1,7 +1,8 @@
 .DS_Store
-logs/
+logs
 *.o
 .vscode
 main
 main.dSYM
 .crna
+docs

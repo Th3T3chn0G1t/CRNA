@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# == 0 ]; then
-    echo "Usage: ./generateApplicationTemplate.sh destination"
+    echo "Usage: $0 <destination>"
     exit
 fi
 

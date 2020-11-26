@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 
 import io
-from sys import argv
+from sys import argv, argc
+
+if(argc == 0):
+	print("Usage: " + argv[0] + " <name>")
 
 name = argv[1]
 

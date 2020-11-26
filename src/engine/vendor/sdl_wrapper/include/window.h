@@ -7,6 +7,10 @@
 
 #include "logger.h"
 
+/**
+ * A wrapper for the SDL Window type
+ * Provides easily understandable top level functions for controlling the window
+ */
 typedef struct WINDOW {
     SDL_Window* window;
 } window_T;

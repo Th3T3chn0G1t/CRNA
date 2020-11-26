@@ -4,6 +4,10 @@
 #include "../vendor/sdl_wrapper/include/font.h"
 #include <stdbool.h>
 
+/**
+ * Contains data for initializing and running and application
+ * See .crna/game_settings.ini for details
+ */
 typedef struct SETTINGS {
     int resX, resY;
     int posX, posY;
@@ -17,6 +21,9 @@ typedef struct SETTINGS {
     char* log_output_pattern;
 } settings_T;
 
+/**
+ * Loads settings into the returned struct from the provided game settings ini file
+ */
 settings_T* settings_load(const char* file);
 
 #endif
