@@ -74,18 +74,21 @@ get-deps:
 	./configure
 	make
 	sudo make install
+	rm -rf $(SDL_VERSION)
 
 	curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF_VERSION).tar.gz | tar xz
 	cd $(TTF_VERSION)
 	./configure
 	make
 	sudo make install
+	rm -rf $(SDL_VERSION)
 	
 	https://www.libsdl.org/projects/SDL_image/release/$(IMG_VERSION).tar.gz
 	cd $(IMG_VERSION)
 	./configure
 	make
 	sudo make install
+	rm -rf $(SDL_VERSION)
 	
 # Generate docs from targets
 help: ### Show this list 
