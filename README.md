@@ -2,7 +2,7 @@
 A fully featured 2D game engine written in C using SDL
 
 [![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](docs/html/index.html)
-![Build Status](https://img.shields.io/badge/api-reference-blue.svg)
+![Build Status](https://api.travis-ci.org/Th3T3chn0G1t/CRNA.svg?branch=master)
 
 ![GPLV3LOGO](https://www.gnu.org/graphics/gplv3-or-later.png)
 
