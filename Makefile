@@ -17,6 +17,10 @@ lib_flags = -L/usr/local/lib -lSDL2 -lSDL2_ttf -lSDL2_image
 logfile = $(shell scripts/keyFromSection.sh .crna/build_settings.ini logging logfile)
 tests_logfile = $(shell scripts/keyFromSection.sh .crna/build_settings.ini logging tests_logfile)
 
+SDL_VERSION = SDL2-2.0.12
+TTF_VERSION = SDL2_ttf-2.0.15
+IMG_VERSION = SDL2_image-2.0.5
+
 build: ### Build the project
 	@time make $(exec) -j 2>&1 | tee $(logfile) 
 	@echo "Complete!"
@@ -65,10 +69,24 @@ documentation: ### Generates documentation for sources (Doxygen)
 	@doxygen Doxyfile
 
 get-deps:
-	sudo apt-get install libsdl2-dev
-	sudo apt-get install libsdl2-ttf-dev
-	sudo apt-get install libsdl2-img-dev
+	curl -L https://www.libsdl.org/release/$(SDL_VERSION).tar.gz | tar xz
+	cd $(SDL_VERSION)
+	./configure
+	make
+	sudo make install
 
+	curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF_VERSION).tar.gz | tar xz
+	cd $(TTF_VERSION)
+	./configure
+	make
+	sudo make install
+	
+	https://www.libsdl.org/projects/SDL_image/release/$(IMG_VERSION).tar.gz
+	cd $(IMG_VERSION)
+	./configure
+	make
+	sudo make install
+	
 # Generate docs from targets
 help: ### Show this list 
 	@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
