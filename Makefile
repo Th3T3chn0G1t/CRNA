@@ -64,6 +64,9 @@ documentation: ### Generates documentation for sources (Doxygen)
 	-@rm -rf docs/*
 	@doxygen Doxyfile
 
+get-deps:
+	sudo apt-get install libsdl2-dev libsdl2_ttf-dev libsdl2_img-dev
+
 # Generate docs from targets
 help: ### Show this list 
 	@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
