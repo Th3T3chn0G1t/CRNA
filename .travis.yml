@@ -1,4 +1,4 @@
 language: c
-scripts:
+script:
   - make run
   - make test
