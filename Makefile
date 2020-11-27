@@ -21,7 +21,7 @@ SDL_VERSION = SDL2-2.0.12
 TTF_VERSION = SDL2_ttf-2.0.15
 IMG_VERSION = SDL2_image-2.0.5
 
-CUNIT_VERSION = 2.1-3
+CUNIT_VERSION = 2.1-2
 
 build: ### Build the project
 	@time make $(exec) -j 2>&1 | tee $(logfile) 
