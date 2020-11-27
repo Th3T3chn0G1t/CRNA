@@ -83,7 +83,7 @@ get-deps:
 	cd $(IMG_VERSION) && ./configure && make && sudo make install
 	rm -rf $(IMG_VERSION)
 
-	curl -L http://downloads.sourceforge.net/project/cunit/CUnit/$(CUNIT_VERSION)/CUnit-$(CUNIT_VERSION)-src.tar.bz2 | tar xvfj
+	curl -L http://downloads.sourceforge.net/project/cunit/CUnit/$(CUNIT_VERSION)/CUnit-$(CUNIT_VERSION)-src.tar.bz2 | tar xz
 	cd CUnit-$(CUNIT_VERSION) && libtoolize -f -c -i \
 		&& aclocal \
 		&& autoconf \
