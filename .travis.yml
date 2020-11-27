@@ -1,15 +1,4 @@
 language: c
-os: linux
-dist: trusty
-compiler: gcc
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - gcc
-install: make get-deps
 script:
-  - gcc --version
   - make
   - make test

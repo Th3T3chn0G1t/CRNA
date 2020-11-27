@@ -8,7 +8,7 @@ objects = $(sources:.c=.o)
 test_sources = $(shell find src/ -type f -iname "*.c" -path "./src/game" -prune) $(shell find tests/ -type f -iname "*.c")
 test_objects = $(test_sources:.c=.o)
 
-cflags = -std=c18 -pedantic-errors -Wall -Wextra -I/usr/local/Cellar -I/usr/local/include/SDL2 -D_THREAD_SAFE
+cflags = -pedantic-errors -Wall -Wextra -I/usr/local/Cellar -I/usr/local/include/SDL2 -D_THREAD_SAFE
 inih_flags = -DINI_USE_STACK=0 -DINI_ALLOW_REALLOC=1
 user_flags = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation cflags)
 buildtime_flags =
