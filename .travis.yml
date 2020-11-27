@@ -9,5 +9,7 @@ addons:
       - gcc-10
 install: make get-deps
 script:
+  - sudo ln -s /usr/bin/gcc-10 /usr/local/bin/gcc
+  - gcc --version
   - make
   - make test
