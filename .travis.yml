@@ -6,10 +6,9 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-10
+      - gcc
 install: make get-deps
 script:
-  - sudo ln -s /usr/bin/gcc-10 /usr/local/bin/gcc
   - gcc --version
   - make
   - make test
