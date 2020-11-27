@@ -1,12 +1,10 @@
 # Contributing Guidelines
 
-## Contributing Code
-
 To contribute your changes to the project, please follow the [GitHub how to](https://help.github.com/articles/using-pull-requests/) for pull requests
 
-### Code Style
+## Code Style
 
-#### Sources
+### Sources
     - Use `typedef struct`s instead of `struct`s unless absolutely neccesary
     - Include unit tests when you contribute new features to ensure that your feature is functional both now and in future builds
         Tests are to be placed in the `tests` folder and follow the same structure as the `src` folder
@@ -17,12 +15,12 @@ To contribute your changes to the project, please follow the [GitHub how to](htt
     - Use bracketless statements where possible
     - Use varadic arguments instead of arrays for direct arguments where possible
 
-#### Headers
+### Headers
     - Use `#define` and `#ifndef` to implement one-time includes, DO NOT USE `#pragma once`
     - Define function pointer types where the type is to be implemented in a program
     - Use /**DOCUMENTATION*/ on all functions & types (Not neccesary for structs) in headers
 
-### Scripts & Tools
+## Scripts & Tools
 
 NB. If it isn't reused internally or externally more than once, you dont need a script for it
 
@@ -30,11 +28,11 @@ Compilation targets only are to be placed in the Makefile, other scripts and too
 
 Scripts don't require tests, but please ensure they function properly for their purpose before adding them
 
-#### Makefile
+### Makefile
     - Document all callable targets using ### (Documentation is self-generating)
     - Avoid requiring `$(exec)` in targets as it messes up the documentation output, run make inside the target instead
 
-#### Other tools
+### Other tools
     - Avoid fetching external resources from webpages and the like
     - Place implementations of 3rd-party tools in the top level scripts directory, only the tools themselves need to be placed in `scripts/vendor`
     - Try to stick to Bash/Python where possible, though ruby is also acceptable
