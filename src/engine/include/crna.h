@@ -1,7 +1,7 @@
 #ifndef CRNA_H
 #define CRNA_H
 
-#define start_function_T bool (*start_func) (settings_T*, node_T**, game_T*)
+#define start_function_T void (*start_func) (settings_T*, node_T**, game_T*)
 #define update_function_T void (*update_func) (game_T*, node_T*, camera_controller_T*)
 #define destroy_function_T void (*destroy_func) (node_T*)
 
