@@ -77,7 +77,7 @@ get-deps:
 	cd $(TTF_VERSION) && ./configure && make && sudo make install
 	rm -rf $(TTF_VERSION)
 	
-	https://www.libsdl.org/projects/SDL_image/release/$(IMG_VERSION).tar.gz
+	curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG_VERSION).tar.gz | tar xz
 	cd $(IMG_VERSION) && ./configure && make && sudo make install
 	rm -rf $(IMG_VERSION)
 	
