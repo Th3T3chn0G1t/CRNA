@@ -90,8 +90,12 @@ get-deps:
 		&& automake --gnu --add-missing \
 		&& ./configure --prefix=/usr/local \
 		&& make \
-		&& make install
+		&& sudo make install
 	rm -rf CUnit-$(CUNIT_VERSION)
+
+	git clone https://github.com/doxygen/doxygen.git
+	mkdir doxygen/build
+	cd doxygen/build && cmake -G "Unix Makefiles" .. && make && sudo make install
 	
 # Generate docs from targets
 help: ### Show this list 
