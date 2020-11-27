@@ -24,7 +24,7 @@ IMG_VERSION = SDL2_image-2.0.5
 CUNIT_VERSION = 2.1-2
 
 build: ### Build the project
-	@mkdir $(logfile)
+	@mkdir logs
 	@time make $(exec) -j 2>&1 | tee $(logfile) 
 	@echo "Complete!"
 
