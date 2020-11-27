@@ -21,6 +21,8 @@ SDL_VERSION = SDL2-2.0.12
 TTF_VERSION = SDL2_ttf-2.0.15
 IMG_VERSION = SDL2_image-2.0.5
 
+CUNIT_VERSION = 2.1-3
+
 build: ### Build the project
 	@time make $(exec) -j 2>&1 | tee $(logfile) 
 	@echo "Complete!"
@@ -80,6 +82,15 @@ get-deps:
 	curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG_VERSION).tar.gz | tar xz
 	cd $(IMG_VERSION) && ./configure && make && sudo make install
 	rm -rf $(IMG_VERSION)
+
+	curl -L http://downloads.sourceforge.net/project/cunit/CUnit/$(CUNIT_VERSION)/CUnit-$(CUNIT_VERSION)-src.tar.bz2 | tar xvfj
+	cd CUnit-$(CUNIT_VERSION) && libtoolize -f -c -i \
+		&& aclocal \
+		&& autoconf \
+		&& automake --gnu --add-missing \
+		&& ./configure --prefix=/usr/local \
+		&& make \
+		&& make install
 	
 # Generate docs from targets
 help: ### Show this list 
