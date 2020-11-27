@@ -1,4 +1,5 @@
 #include "include/crna.h"
+#include <time.h>
 
 static crna_T* CRNA;
 
@@ -35,7 +36,7 @@ void exit_callback() {
     SDL_Quit();
 }
 
-const static char* SIGNAL_NAMES[32] = {
+static const char* SIGNAL_NAMES[32] = {
     "Invalid Signal",
     "Host Process Hangup",
     "User Interrupt",

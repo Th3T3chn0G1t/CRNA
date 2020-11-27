@@ -5,7 +5,7 @@ void on_start(settings_T* settings, node_T** registry, game_T* game) {
     info("Game started");
 }
 
-bool on_update(game_T* game, node_T* registry, camera_controller_T* camera) {
+void on_update(game_T* game, node_T* registry, camera_controller_T* camera) {
     static bool echoed_gamestate = false;
     if(!echoed_gamestate) {
         print_gamestate_info();
@@ -13,8 +13,6 @@ bool on_update(game_T* game, node_T* registry, camera_controller_T* camera) {
     }
 
     camera->latch = get(registry, 1);
-
-    return true;
 }
 
 void on_destroy(node_T* registry) {
