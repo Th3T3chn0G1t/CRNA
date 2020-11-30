@@ -3,29 +3,55 @@
 
 #include "image.h"
 
+/**
+ * A mechanic for drawing to a surface/image
+ */
 typedef struct CONTEXT {
+    /**
+     * The image to draw for
+     */
     image_T* image;
 
+    /**
+     * The clear color for drawing
+     */
     color_T* clear;
+    /**
+     * The foreground color for drawing
+     */
     color_T* foreground;
 
+    /**
+     * The font for drawing text
+     */
     font_T* font;
 
-    int offset_x, offset_y;
+    /**
+     * The x offset by which to transform draw operations
+     */
+    int offset_x; 
+    /**
+     * The y offset by which to transform draw operations
+     */
+    int offset_y;
 } context_T;
 
 /**
- * Creates a new drawing context for drawing to the image's surface
+ * Creates a new drawing context
+ * @param surface The image to draw to
+ * @return A heap pointer to the created struct
  */
 context_T* context(image_T* surface);
 
 /**
  * Clears the surface with the current clear color
+ * @param context The context to peform this operation on
  */
 void clear(context_T* context);
 
 /**
  * Fills a rectangle in the surface with the current foreground color with the given dimensions
+ * @param context The context to peform this operation on
  */
 void fill_rect(context_T* context, int x, int y, int width, int height);
 

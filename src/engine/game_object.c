@@ -65,15 +65,15 @@ bool on_collide(game_object_T* o, game_object_T* other) {
     return false;
 }
 
-void set_ticking_function(game_object_T* o, void (*tick) (void*, void*)) {
+void set_ticking_function(game_object_T* o, object_update_function_T) {
     o->tick = tick;
 }
 
-void set_render_function(game_object_T* o, void (*render) (void*, context_T*, void*)) {
+void set_render_function(game_object_T* o, object_render_function_T) {
     o->render = render;
 }
 
-void set_on_collide_function(game_object_T* o, bool (*on_collide) (void*, void*)) {
+void set_on_collide_function(game_object_T* o, object_collide_function_T) {
     o->on_collide = on_collide;
 }
 

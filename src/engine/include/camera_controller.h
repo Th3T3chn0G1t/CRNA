@@ -4,21 +4,31 @@
 #include "game_object.h"
 
 /**
- * Controls a context (Which acts as a camera) such that it centres on the latched game object
+ * Controls a context such that it centres on the latched game object
  */
 typedef struct CAMERA_CONTROLLER {
-    game_object_T* latch;
+    /**
+     * The context to be controlled
+     */
     context_T* control;
+    /**
+     * The object to center on
+     */
+    game_object_T* latch;
 } camera_controller_T;
 
 /**
- * Creates a camera controller for the context and latches to the object
+ * Creates a new camera controller
+ * @param latch The object which the context should center on
+ * @param control The context to be controlled
+ * @return A heap pointer to the created struct
  */
 camera_controller_T* camera_controller(game_object_T* latch, context_T* control);
 
 /**
  * Updates the camera position to the current position of the latch object
- * Needs to be called after updating position of latch object
+ * @note Needs to be called after updating position of latch object
+ * @param camera_controller The camera_controller to perform the operation on
  */
 void update_camera_pos(camera_controller_T* camera_controller);
 

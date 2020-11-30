@@ -5,7 +5,6 @@ logs
 main
 main.dSYM
 .crna/game_settings.ini
-docs
 SDL2-2.0.12
 SDL2_ttf-2.0.15
 SDL2_image-2.0.5

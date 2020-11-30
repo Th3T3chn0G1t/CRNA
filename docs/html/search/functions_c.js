@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['set_248',['set',['../linked__list_8h.html#a00cc7083661d111785b8f8e48aba2851',1,'linked_list.h']]],
+  ['set_5fclear_249',['set_clear',['../context_8h.html#aa9b1fc0bf1b011d6873ec42ebd4a288f',1,'context.h']]],
+  ['set_5fcolor_250',['set_color',['../context_8h.html#a9b33abee292a60a1280a7c61d4d16494',1,'context.h']]],
+  ['set_5fdecorated_251',['set_decorated',['../window_8h.html#ad8bdec79377f9be10e6e9a1c9b1badf0',1,'window.h']]],
+  ['set_5ffont_252',['set_font',['../context_8h.html#a1cf40b1eda4c0d1df1acb6fd6dcd731d',1,'context.h']]],
+  ['set_5ffullscreen_253',['set_fullscreen',['../window_8h.html#a6dae4ad24aecb6e9ba01b141ae9e864a',1,'window.h']]],
+  ['set_5fimplementor_254',['set_implementor',['../game__object_8h.html#ad38c6226c7e85958770b7eeeaa46ad0f',1,'game_object.h']]],
+  ['set_5foffset_255',['set_offset',['../context_8h.html#a88d91ee6687aa84f506df2cb3ea46a58',1,'context.h']]],
+  ['set_5fon_5fcollide_5ffunction_256',['set_on_collide_function',['../game__object_8h.html#a0439bbc1446a5849890e033abfcb4f4f',1,'game_object.h']]],
+  ['set_5fpixel_257',['set_pixel',['../image_8h.html#ab98c9e80986ed6a58e523eed896db5a4',1,'image.h']]],
+  ['set_5fposition_258',['set_position',['../window_8h.html#a4f6c6fcc0974b1ab3faa74525ec793c5',1,'window.h']]],
+  ['set_5frender_5ffunction_259',['set_render_function',['../game__object_8h.html#adac360053f12caa78dd94f48fd5c6dbc',1,'game_object.h']]],
+  ['set_5fsize_260',['set_size',['../window_8h.html#a9e0c5e6bdc03e0e4372652cbeee824fd',1,'window.h']]],
+  ['set_5fticking_5ffunction_261',['set_ticking_function',['../game__object_8h.html#a0895f491a628f59892c7f94c345461c7',1,'game_object.h']]],
+  ['set_5ftitle_262',['set_title',['../window_8h.html#a061095f68e9a843838461d422005b944',1,'window.h']]],
+  ['set_5fvisible_263',['set_visible',['../window_8h.html#a2ce3ec696e029c357c4adc4f76f89f23',1,'window.h']]],
+  ['settings_5fload_264',['settings_load',['../settings_8h.html#a266e6c4de9ddcfcd589644b58a494307',1,'settings.h']]],
+  ['shutdown_5flogger_265',['shutdown_logger',['../logger_8h.html#ad28c8d063627d5ab243adb1c514e5104',1,'logger.h']]],
+  ['start_266',['start',['../game_8h.html#a7e19a719bd75f2d4c2b66ef4a35c4082',1,'game.h']]],
+  ['surface_5fimage_267',['surface_image',['../image_8h.html#a2e92b7101f10519a477f8f72cb05448b',1,'image.h']]]
+];
