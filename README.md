@@ -31,18 +31,12 @@ A tutorial for creating a basic project can be found [here](https://th3t3chn0g1t
     Build settings for controlling the Makefile can be found here ```.crna/build_settings.ini```
     Execution settings for controlling the program startup can be found here ```.crna/game_settings.ini```
 
-Project General TODO:
-    - Readme
-    - Roadmap
-    - Find good bug tracker
-
-CRNA TODO: 
+## TODO
     - **Write tests**
-    - Hardware Acceleration with all SDL APIs
-    - Sound
-    - GUI
-    - Scene editor
-    - Proper camera interface instead of contexts
     - Seperate physics from gameobject 
+    - Hardware Acceleration with all SDL APIs
+    - 3D
     - Proper gameobject scripting
-    - 3D Maybe?
+    - Find good bug tracker
+    - GUI/Scene editor
+    - Sound
