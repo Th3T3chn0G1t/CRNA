@@ -3,7 +3,7 @@
 [![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://th3t3chn0g1t.github.io/CRNA/index.html)
 [![Build Status](https://api.travis-ci.com/Th3T3chn0G1t/CRNA.svg)](https://api.travis-ci.com/Th3T3chn0G1t/CRNA)
 
-[![GPLV3LOGO](https://www.gnu.org/graphics/gplv3-or-later.png)](LICENCE)
+[![GPLV3LOGO](https://www.gnu.org/graphics/gplv3-or-later.png)](https://www.gnu.org/licenses/gpl-3.0.txt)
 
 **NB. CRNA is currently being developed for and on Unix based systems and does not officially support Windows. Keep this in mind for contributions**
 
@@ -19,6 +19,17 @@ CRNA as of the time of writing has the following features:
     - Templating of scene components and crna applications
 
 A tutorial for creating a basic project can be found [here](https://th3t3chn0g1t.github.io/CRNA/md_res_docs_tutorial_welcome.html)
+
+## Documentation
+    Every part of every header contains documentation for its purpose and how to use it - you can either access this information directly or you can use Doxygen to generate docs (See the Doxyfile for more information)
+
+    The html documentation for the latest build is available [here](https://th3t3chn0g1t.github.io/CRNA/)
+
+## Config
+    There are a few build and execution settings that can be controlled by ini files in the ```.crna``` directory and all keys have ### documentation
+
+    Build settings for controlling the Makefile can be found here ```.crna/build_settings.ini```
+    Execution settings for controlling the program startup can be found here ```.crna/game_settings.ini```
 
 Project General TODO:
     - Readme

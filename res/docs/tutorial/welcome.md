@@ -11,5 +11,5 @@ Firstly, keep the following in mind in case you encounter an issue during develo
 
 With that out of the way, let's move onto your first program
 
-*<< Previous* \
+*[<< Previous](README)* \
 [Next >>](first)
