@@ -103,6 +103,10 @@ void crna_init(start_function_T, update_function_T, destroy_function_T) {
 
     start_func(CRNA->settings, &(CRNA->registry), CRNA->game);
 
+    if(!CRNA->registry) {
+        warning("Registry was empty during initialization. Creating dummy entry at index 0 for camera controller");
+        game_object(&CRNA->registry, 0, 0, 0, 0, 0);
+    }
     CRNA->cam = camera_controller(get(CRNA->registry, 0), CRNA->game->context);
 
     CRNA->update_func = update_func;

@@ -54,8 +54,10 @@ void render(game_object_T* o, context_T* context, void* passthrough) {
     if(o->render)
         o->render(o, context, passthrough);
     else {
-        draw_image(context, get_frame(o->animation), o->x, o->y);
-        advance_frame(o->animation);
+        if(o->animation) {
+            draw_image(context, get_frame(o->animation), o->x, o->y);
+            advance_frame(o->animation);
+        }
     }
 }
 

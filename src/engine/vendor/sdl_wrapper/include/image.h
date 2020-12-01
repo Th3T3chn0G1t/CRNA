@@ -4,12 +4,21 @@
 #include "color.h"
 #include "font.h"
 
+/**
+ * Contains the data and formatting of an image for rendering
+ */
 typedef struct IMAGE {
+    /**
+     * The image data
+     */
     SDL_Surface* surface;
 } image_T;
 
 /**
- * Wraps the given surface as an image
+ * Wraps an SDL_Surface as an image
+ * @note Use only for special cases where only an SDL_Surface is available, otherwise use image() or text() instead
+ * @param surface The surface to wrap
+ * @return A heap pointer to the created struct
  */
 image_T* surface_image(SDL_Surface* surface);
 
