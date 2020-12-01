@@ -18,7 +18,7 @@ CRNA as of the time of writing has the following features:
     - Full documentation of all functions
     - Templating of scene components and crna applications
 
-A tutorial for creating a basic project can be found [here](https://th3t3chn0g1t.github.io/CRNA/md_res_docs_tutorial_tutorial_welcome.html)
+A tutorial for creating a basic project can be found [here](https://th3t3chn0g1t.github.io/CRNA/md_res_docs_tutorial_welcome.html)
 
 Project General TODO:
     - Readme

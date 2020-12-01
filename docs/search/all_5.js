@@ -15,6 +15,5 @@ var searchData=
   ['foreground_58',['foreground',['../context_8h.html#a96c1a7a285080eefdc3410bbb408fb88',1,'context_T']]],
   ['framerate_59',['framerate',['../settings_8h.html#a177d1876eb542ab0aadfa7120ad5b7b9',1,'settings_T']]],
   ['frames_60',['frames',['../animation_8h.html#a68c014d21db848402284007a40b2d301',1,'animation_T']]],
-  ['fullscreen_61',['fullscreen',['../settings_8h.html#ae163efb46fb3fd89ffc2e5738f977d34',1,'settings_T']]],
-  ['fejfwefhahhaha_62',['fejfwefhahhaha',['../md_res_docs_tutorial_tutorial_welcome.html',1,'']]]
+  ['fullscreen_61',['fullscreen',['../settings_8h.html#ae163efb46fb3fd89ffc2e5738f977d34',1,'settings_T']]]
 ];

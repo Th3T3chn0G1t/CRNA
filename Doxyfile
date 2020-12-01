@@ -847,7 +847,6 @@ WARN_LOGFILE           =
 INPUT                  = "src/" \
                          "res/docs/" \
                          "README.md" \
-                         "ISSUES.md" \
                          "ACKNOWLEDGMENTS.md" \
                          "CONTRIBUTING.md" \
 
