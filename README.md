@@ -20,6 +20,12 @@ CRNA as of the time of writing has the following features:
 
 A tutorial for creating a basic project can be found [here](https://th3t3chn0g1t.github.io/CRNA/md_res_docs_tutorial_welcome.html)
 
+## Installation
+
+To download the project, just download the latest release or clone the directory (might be broken!)
+
+There is no other installation required to start developing with CRNA apart from a few dependencies that need to be resolved. These can be installed using ```make get-deps```
+
 ## Documentation
 Every part of every header contains documentation for its purpose and how to use it - you can either access this information directly or you can use Doxygen to generate docs (See the Doxyfile for more information)
 

@@ -2,6 +2,7 @@
 #include "../engine/include/io.h"
 
 void on_start(settings_T* settings, node_T** registry, game_T* game) {
+    info("Hello, world!");
     info("Game started");
 }
 

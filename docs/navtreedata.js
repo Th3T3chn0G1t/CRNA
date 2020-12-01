@@ -26,20 +26,22 @@ var NAVTREE =
 [
   [ "CRNA", "index.html", [
     [ "Tutorial", "md_res_docs_tutorial_welcome.html", [
-      [ "Documentation", "index.html#autotoc_md2", null ],
-      [ "Config", "index.html#autotoc_md3", null ],
-      [ "TODO", "index.html#autotoc_md4", null ],
-      [ "Welcome", "md_res_docs_tutorial_welcome.html#autotoc_md1", null ]
+      [ " Installation", "index.html#autotoc_md3", null ],
+      [ "Documentation", "index.html#autotoc_md4", null ],
+      [ "Config", "index.html#autotoc_md5", null ],
+      [ "TODO", "index.html#autotoc_md6", null ],
+      [ "Welcome", "md_res_docs_tutorial_welcome.html#autotoc_md1", null ],
+      [ "Hello CRNA", "md_res_docs_tutorial_welcome.html#autotoc_md2", null ]
     ] ],
     [ "Acknowledgments", "md__a_c_k_n_o_w_l_e_d_g_m_e_n_t_s.html", null ],
     [ "Contributing Guidelines", "md__c_o_n_t_r_i_b_u_t_i_n_g.html", [
-      [ "Code Style", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md7", [
-        [ "Sources", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md8", null ],
-        [ "Headers", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md9", null ]
+      [ "Code Style", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md9", [
+        [ "Sources", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md10", null ],
+        [ "Headers", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md11", null ]
       ] ],
-      [ "Scripts & Tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md10", [
-        [ "Makefile", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md11", null ],
-        [ "Other tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md12", null ]
+      [ "Scripts & Tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md12", [
+        [ "Makefile", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md13", null ],
+        [ "Other tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md14", null ]
       ] ]
     ] ],
     [ "Deprecated List", "deprecated.html", null ],
