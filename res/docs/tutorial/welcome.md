@@ -16,7 +16,7 @@ With that out of the way, let's move onto your first program
 To generate a new project, navigate to the CRNA directory in the command line and run```scripts/generateProjectTemplate.sh <destination dir>``` where destination dir is the relative path to the destination directory. E.g. ```scripts/generateProjectTemplate.sh ~/dev/crna_tutorial```. This script automatically excludes a lot of the stuff you don't need
 
 Now if you naviagate to ```src/game/main.c``` in your newly created project, you can observe the following:
-
+```c
     #include "../engine/include/crna.h"
     #include "../engine/include/io.h"
 
@@ -39,9 +39,9 @@ Now if you naviagate to ```src/game/main.c``` in your newly created project, you
     int main(int argc, char** argv) {
         crna_init(on_start, on_update, on_destroy);
     }
-
+```
 If you now add the line ```info("Hello, world!")``` to the ```on_start()``` function and run ```make run```, then exit the program using ```ALT-F4``` on Linux or ```CMD+Q``` on MacOS. You should see the following log output:
-
+```c
     INFO: Hello, world!
     INFO: Game started
     WARNING: Registry was empty during initialization. Creating dummy entry at index 0 for camera controller
@@ -68,5 +68,5 @@ If you now add the line ```info("Hello, world!")``` to the ```on_start()``` func
 
     INFO: Quit requested by user
     INFO: Shutting down...
-
+```
 The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions

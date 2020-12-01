@@ -99,58 +99,66 @@ Welcome</h1>
 Hello CRNA</h1>
 <p>(This section presumes that you have followed the intallation instructions in the README)</p>
 <p>To generate a new project, navigate to the CRNA directory in the command line and run<code>scripts/generateProjectTemplate.sh &lt;destination dir&gt;</code> where destination dir is the relative path to the destination directory. E.g. <code>scripts/generateProjectTemplate.sh ~/dev/crna_tutorial</code>. This script automatically excludes a lot of the stuff you don't need</p>
-<p>Now if you naviagate to <code>src/game/main.c</code> in your newly created project, you can observe the following: </p><pre class="fragment">#include "../engine/include/crna.h"
-#include "../engine/include/io.h"
-
-void on_start(settings_T* settings, node_T** registry, game_T* game) {
-    info("Game started");
-}
-
-void on_update(game_T* game, node_T* registry, camera_controller_T* camera) {
-    static bool echoed_gamestate = false;
-    if(!echoed_gamestate) {
-        print_gamestate_info();
-        echoed_gamestate = true;
-    }
-}
-
-void on_destroy(node_T* registry) {
-    info("Shutting down...");
-}
-
-int main(int argc, char** argv) {
-    crna_init(on_start, on_update, on_destroy);
-}
-</pre><p>If you now add the line <code>info("Hello, world!")</code> to the <code>on_start()</code> function and run <code>make run</code>, then exit the program using <code>ALT-F4</code> on Linux or <code>CMD+Q</code> on MacOS. You should see the following log output: </p><pre class="fragment">INFO: Hello, world!
-INFO: Game started
-WARNING: Registry was empty during initialization. Creating dummy entry at index 0 for camera controller
-DEBUG: Gamestate Information
-
-Game Settings:
-        Resolution: 1280 x 800
-        Framerate: 60
-        Position: 0, 0
-        Title: Title
-        Version: 0.0.0
-        Fullscreen?: False
-        Decorated?: False
-        Font: res/font/BPdotsSquareBold.ttf
-        Font Size: 16
-Registry Length: 1
-Game:
-        Window: Valid
-        Window Context: Valid
-        Input Context: Valid
-Camera Controller:
-        Drawing Context: Valid
-        Latch: Valid
-
-INFO: Quit requested by user
-INFO: Shutting down...
-</pre><p>The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions </p>
+<p>Now if you naviagate to <code>src/game/main.c</code> in your newly created project, you can observe the following: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;../engine/include/crna.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;../engine/include/io.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> on_start(<a class="code" href="settings_8h.html#structsettings___t">settings_T</a>* settings, <a class="code" href="linked__list_8h.html#structnode___t">node_T</a>** registry, <a class="code" href="game_8h.html#structgame___t">game_T</a>* game) {</div>
+<div class="line">    <a class="code" href="logger_8h.html#a5a70546dca5435454e90d57d13dd7a99">info</a>(<span class="stringliteral">&quot;Game started&quot;</span>);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> on_update(<a class="code" href="game_8h.html#structgame___t">game_T</a>* game, <a class="code" href="linked__list_8h.html#structnode___t">node_T</a>* registry, <a class="code" href="camera__controller_8h.html#structcamera__controller___t">camera_controller_T</a>* camera) {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">bool</span> echoed_gamestate = <span class="keyword">false</span>;</div>
+<div class="line">    <span class="keywordflow">if</span>(!echoed_gamestate) {</div>
+<div class="line">        <a class="code" href="crna_8h.html#a4f598d87bd0233fcd75929b91826be7a">print_gamestate_info</a>();</div>
+<div class="line">        echoed_gamestate = <span class="keyword">true</span>;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> on_destroy(<a class="code" href="linked__list_8h.html#structnode___t">node_T</a>* registry) {</div>
+<div class="line">    <a class="code" href="logger_8h.html#a5a70546dca5435454e90d57d13dd7a99">info</a>(<span class="stringliteral">&quot;Shutting down...&quot;</span>);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
+<div class="line">    <a class="code" href="crna_8h.html#a67b9d4f15bbc86a12ece95941c6c6d27">crna_init</a>(on_start, on_update, on_destroy);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>If you now add the line <code>info("Hello, world!")</code> to the <code>on_start()</code> function and run <code>make run</code>, then exit the program using <code>ALT-F4</code> on Linux or <code>CMD+Q</code> on MacOS. You should see the following log output: </p><div class="fragment"><div class="line">INFO: Hello, world!</div>
+<div class="line">INFO: Game started</div>
+<div class="line">WARNING: Registry was empty during initialization. Creating dummy entry at index 0 <span class="keywordflow">for</span> camera controller</div>
+<div class="line">DEBUG: Gamestate Information</div>
+<div class="line"> </div>
+<div class="line">Game Settings:</div>
+<div class="line">        Resolution: 1280 x 800</div>
+<div class="line">        Framerate: 60</div>
+<div class="line">        Position: 0, 0</div>
+<div class="line">        Title: Title</div>
+<div class="line">        Version: 0.0.0</div>
+<div class="line">        Fullscreen?: False</div>
+<div class="line">        Decorated?: False</div>
+<div class="line">        Font: res/<a class="code" href="font_8h.html#a85a753ae3eb174cdf53cc3f3dca88d8a">font</a>/BPdotsSquareBold.ttf</div>
+<div class="line">        Font Size: 16</div>
+<div class="line">Registry Length: 1</div>
+<div class="line">Game:</div>
+<div class="line">        Window: Valid</div>
+<div class="line">        Window Context: Valid</div>
+<div class="line">        Input Context: Valid</div>
+<div class="line">Camera Controller:</div>
+<div class="line">        Drawing Context: Valid</div>
+<div class="line">        Latch: Valid</div>
+<div class="line"> </div>
+<div class="line">INFO: Quit requested by user</div>
+<div class="line">INFO: Shutting down...</div>
+</div><!-- fragment --><p>The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
+<div class="ttc" id="alinked__list_8h_html_structnode___t"><div class="ttname"><a href="linked__list_8h.html#structnode___t">node_T</a></div><div class="ttdef"><b>Definition:</b> linked_list.h:15</div></div>
+<div class="ttc" id="afont_8h_html_a85a753ae3eb174cdf53cc3f3dca88d8a"><div class="ttname"><a href="font_8h.html#a85a753ae3eb174cdf53cc3f3dca88d8a">font</a></div><div class="ttdeci">font_T * font(const char *path, int size)</div></div>
+<div class="ttc" id="asettings_8h_html_structsettings___t"><div class="ttname"><a href="settings_8h.html#structsettings___t">settings_T</a></div><div class="ttdef"><b>Definition:</b> settings.h:10</div></div>
+<div class="ttc" id="agame_8h_html_structgame___t"><div class="ttname"><a href="game_8h.html#structgame___t">game_T</a></div><div class="ttdef"><b>Definition:</b> game.h:17</div></div>
+<div class="ttc" id="acamera__controller_8h_html_structcamera__controller___t"><div class="ttname"><a href="camera__controller_8h.html#structcamera__controller___t">camera_controller_T</a></div><div class="ttdef"><b>Definition:</b> camera_controller.h:9</div></div>
+<div class="ttc" id="alogger_8h_html_a5a70546dca5435454e90d57d13dd7a99"><div class="ttname"><a href="logger_8h.html#a5a70546dca5435454e90d57d13dd7a99">info</a></div><div class="ttdeci">void info(const char *str)</div></div>
+<div class="ttc" id="acrna_8h_html_a4f598d87bd0233fcd75929b91826be7a"><div class="ttname"><a href="crna_8h.html#a4f598d87bd0233fcd75929b91826be7a">print_gamestate_info</a></div><div class="ttdeci">void print_gamestate_info()</div></div>
+<div class="ttc" id="acrna_8h_html_a67b9d4f15bbc86a12ece95941c6c6d27"><div class="ttname"><a href="crna_8h.html#a67b9d4f15bbc86a12ece95941c6c6d27">crna_init</a></div><div class="ttdeci">void crna_init(start_function_T, update_function_T, destroy_function_T)</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
