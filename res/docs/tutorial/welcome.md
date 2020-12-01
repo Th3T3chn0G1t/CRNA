@@ -69,4 +69,6 @@ If you now add the line ```info("Hello, world!")``` to the ```on_start()``` func
     INFO: Quit requested by user
     INFO: Shutting down...
 ```
-The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions
+(The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions)
+
+There you are! In the next tutorial we will move onto some coneptual bits & pieces for CRNA
