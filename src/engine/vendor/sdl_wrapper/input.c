@@ -8,7 +8,7 @@ input_T* input() {
     return INPUT_MANAGER;
 }
 
-bool get_keydown(input_T* input_manager, int keycode) {
+bool is_keydown(input_T* input_manager, int keycode) {
     return input_manager->states[keycode];
 }
 

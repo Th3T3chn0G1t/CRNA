@@ -143,49 +143,57 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"></div><table class="fieldtable">
+<div class="textblock"><p>Contains an open file handle for file logging and a group of integer values for handling the verbose state of the modes </p>
+</div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
 <a id="a9f8064fa1a234d297859232899aaf037"></a>int</td>
 <td class="fieldname">
 debug_mode</td>
 <td class="fielddoc">
+<p>The verbose state of debug logging </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a0f8fbb9614d2e57be42a0cec1af48290"></a>int</td>
 <td class="fieldname">
 error_mode</td>
 <td class="fielddoc">
+<p>The verbose state of error logging </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a98f3e793fe5aa310f5d77c87838fa05c"></a>int</td>
 <td class="fieldname">
 fatal_mode</td>
 <td class="fielddoc">
+<p>The verbose state of fatal logging </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a076fd8f44358b1bb5ce126624283d00d"></a>FILE *</td>
 <td class="fieldname">
 file</td>
 <td class="fielddoc">
+<p>A handle for the log file </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ae793948b20805d3c81f0248d02359f45"></a>int</td>
 <td class="fieldname">
 info_mode</td>
 <td class="fielddoc">
+<p>The verbose state of info logging </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ab9eb5e4812f70ace34fa03d76f6b1393"></a>int</td>
 <td class="fieldname">
 performance_mode</td>
 <td class="fielddoc">
+<p>The verbose state of performance logging </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a1faf40eb5878e71e265c5da693271506"></a>int</td>
 <td class="fieldname">
 warning_mode</td>
 <td class="fielddoc">
+<p>The verbose state of warning logging </p>
 </td></tr>
 </table>
 
@@ -203,6 +211,7 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log will not output this mode </p>
 
 </div>
 </div>
@@ -217,6 +226,7 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Use stderr for output </p>
 
 </div>
 </div>
@@ -231,6 +241,7 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Use stdout for output </p>
 
 </div>
 </div>
@@ -245,6 +256,7 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log will output this mode </p>
 
 </div>
 </div>
@@ -264,6 +276,12 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log debug information </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -282,6 +300,12 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log error information </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -300,6 +324,12 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log fatal information </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -318,6 +348,12 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log info information </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -336,6 +372,13 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Create a new logger with optional file logging </p><dl class="section note"><dt>Note</dt><dd>You must close the logger in order to close its file handle to prevent resource leakage </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to the logfile </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -382,6 +425,17 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Base logging functionality </p><dl class="section note"><dt>Note</dt><dd>Do not use directly - use top level logging functions instead </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td>A piece of text to be placed preceding the log </td></tr>
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+    <tr><td class="paramname">mode</td><td>The log mode's current state </td></tr>
+    <tr><td class="paramname">target</td><td>The STDOUT or STDERR macros </td></tr>
+    <tr><td class="paramname">file</td><td>The log file to output to </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -400,6 +454,12 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log performance information </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -417,6 +477,7 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Close file pointer and clean-up </p>
 
 </div>
 </div>
@@ -435,6 +496,12 @@ warning_mode</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Log warning information </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be logged </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -124,13 +124,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"></div><table class="fieldtable">
+<div class="textblock"><p>Contains the data and formatting of an image for rendering </p>
+</div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
 <a id="a4e789949f70f093b061a97bac53fed82"></a>SDL_Surface *</td>
 <td class="fieldname">
 surface</td>
 <td class="fielddoc">
+<p>The image data </p>
 </td></tr>
 </table>
 
@@ -168,7 +170,15 @@ surface</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Gets a pixel from the specified x and y coordinate of the image Return value is 4 uint8 values representing rgba all as a uint32 </p>
+<p>Gets a pixel from the image </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to perform this operation on </td></tr>
+    <tr><td class="paramname">x</td><td>The x position of the image to sample from </td></tr>
+    <tr><td class="paramname">y</td><td>The y position of the image to sample from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A uint32 of the color format RRGGBBAA where each letter is a byte </dd></dl>
 
 </div>
 </div>
@@ -197,7 +207,15 @@ surface</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Creates a new image in memory from the given file to the given format The format should be of the drawing surface not of the source image </p>
+<p>Creates a new image from file </p><dl class="section note"><dt>Note</dt><dd>The format should be of the drawing surface not of the source image </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to the image file </td></tr>
+    <tr><td class="paramname">format</td><td>The destination pixel format for the image </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A heap pointer to the created struct </dd></dl>
 
 </div>
 </div>
@@ -238,7 +256,15 @@ surface</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets the color of the pixel at the specified x and y coordinate in the image to pixel Pixel should be 4 uint8 values representing rgba all as a uint32 </p>
+<p>Sets the color of the pixel in the image </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to perform this operation on </td></tr>
+    <tr><td class="paramname">x</td><td>The x position of the image to write to </td></tr>
+    <tr><td class="paramname">y</td><td>The y position of the image to write to </td></tr>
+    <tr><td class="paramname">pixel</td><td>A uint32 of the color format RRGGBBAA where each letter is a byte </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -257,7 +283,14 @@ surface</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Wraps the given surface as an image </p>
+<p>Wraps an SDL_Surface as an image </p><dl class="section note"><dt>Note</dt><dd>Use only for special cases where only an SDL_Surface is available, otherwise use <a class="el" href="image_8h.html#a784cec005ba45e326b57a0be572e9981">image()</a> or <a class="el" href="image_8h.html#a46a270ca00462722acbc2e6be0837acc">text()</a> instead </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">surface</td><td>The surface to wrap </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A heap pointer to the created struct </dd></dl>
 
 </div>
 </div>
@@ -292,7 +325,15 @@ surface</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Creates an image with the given text str using the provided font and color </p>
+<p>Creates an image from a string </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">font</td><td>The font to use for drawing the text </td></tr>
+    <tr><td class="paramname">str</td><td>The string to draw </td></tr>
+    <tr><td class="paramname">color</td><td>The color to draw the string in </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A heap pointer to the created struct </dd></dl>
 
 </div>
 </div>

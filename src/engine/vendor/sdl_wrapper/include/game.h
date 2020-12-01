@@ -5,6 +5,10 @@
 #include "window.h"
 #include "input.h"
 
+/**
+ * Game header update function
+ * @note This is distinct from the CRNA.h update function and is not intended for userspace
+ */
 #define game_update_T uint32_t (*game_func) (uint32_t time, void* pass)
 
 /**
