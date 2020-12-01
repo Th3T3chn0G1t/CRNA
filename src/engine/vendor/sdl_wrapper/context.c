@@ -61,20 +61,3 @@ void draw_string_bounded(context_T* context, const char* str, int x, int y, int 
 
     draw_image(context, surface_image(TTF_RenderText_Blended_Wrapped(context->font->font, str, as_sdlcolor(context->foreground), width)), x, y);
 }
-
-void set_clear(context_T* context, color_T* color) {
-    context->clear = color;
-}
-
-void set_color(context_T* context, color_T* color) {
-    context->foreground = color;
-}
-
-void set_font(context_T* context, font_T* font) {
-    context->font = font;
-}
-
-void set_offset(context_T* context, int x, int y) {
-    context->offset_x = x;
-    context->offset_y = y;
-}

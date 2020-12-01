@@ -64,19 +64,3 @@ bool on_collide(game_object_T* o, game_object_T* other) {
         return o->on_collide(o, other);
     return false;
 }
-
-void set_ticking_function(game_object_T* o, object_update_function_T) {
-    o->tick = tick;
-}
-
-void set_render_function(game_object_T* o, object_render_function_T) {
-    o->render = render;
-}
-
-void set_on_collide_function(game_object_T* o, object_collide_function_T) {
-    o->on_collide = on_collide;
-}
-
-void set_implementor(game_object_T* o, void* implementor) {
-    o->implementor = implementor;
-}

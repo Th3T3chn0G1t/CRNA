@@ -13,19 +13,15 @@ void update_camera_pos(camera_controller_T* camera_controller) {
     int x = camera_controller->latch->x;
     int y = camera_controller->latch->y;
 
-    int ox = camera_controller->control->offset_x;
-    int oy = camera_controller->control->offset_y;
-
     int width = camera_controller->control->image->surface->w;
     int height = camera_controller->control->image->surface->h;
 
-    if(x + ox < width / 2)
-        set_offset(camera_controller->control, ox + ((width / 2) - (x + ox)), oy);
-    else if(x + ox > width / 2)
-        set_offset(camera_controller->control, ox - ((x + ox) - (width / 2)), oy);
-
-    if(y + oy < height / 2)
-        set_offset(camera_controller->control, ox, oy + ((height / 2) - (y + oy)));
-    else if(y + oy > height / 2)
-        set_offset(camera_controller->control, ox, oy - ((y + oy) - (height / 2)));
+    if(x + camera_controller->control->offset_x < width / 2)
+        camera_controller->control->offset_x += (width / 2) - (x + camera_controller->control->offset_x);
+    else
+        camera_controller->control->offset_x -= (x + camera_controller->control->offset_x) - (width / 2);
+    if(y + camera_controller->control->offset_y < height / 2)
+        camera_controller->control->offset_y -= (height / 2) - (y + camera_controller->control->offset_y);
+    else
+        camera_controller->control->offset_y -= (y + camera_controller->control->offset_y) - (height / 2);
 }

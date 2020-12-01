@@ -119,32 +119,4 @@ void render(game_object_T* o, context_T* context, void* passthrough);
  */
 bool on_collide(game_object_T* o, game_object_T* other);
 
-/**
- * Set the ticking function that will be called on each frame
- * @param o The game object to perform the operation on
- * @param tick The update function
- */
-void set_ticking_function(game_object_T* o, object_update_function_T);
-
-/**
- * Override the rendering function that will be called on each frame
- * @param o The game object to perform the operation on
- * @param tick The render function
- */
-void set_render_function(game_object_T* o, object_render_function_T);
-
-/**
- * Set the function that will be called on object collide
- * @param o The game object to perform the operation on
- * @param tick The collision function
- */
-void set_on_collide_function(game_object_T* o, object_collide_function_T);
-
-/**
- * Used by implementing types to allow for two-way referencing
- * @param o The game object to perform the operation on
- * @param implementor A pointer to the implementing struct
- */
-void set_implementor(game_object_T* o, void* implementor);
-
 #endif

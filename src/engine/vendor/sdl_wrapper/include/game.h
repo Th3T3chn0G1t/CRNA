@@ -5,33 +5,55 @@
 #include "window.h"
 #include "input.h"
 
+#define game_update_T uint32_t (*game_func) (uint32_t time, void* pass)
+
+/**
+ * A management struct for window, context and input operations
+ */
 typedef struct GAME {
+    /**
+     * Drawing context for the window's surface
+     */
     context_T* context;
+    /**
+     * The application window
+     */
     window_T* window;
+    /**
+     * Keyboard input manager
+     */
     input_T* input;
 } game_T;
 
 /**
- * Initialized a game by creating a window with the given parameters and creates a drawing context for the window
+ * Initializes an application
+ * @param width The x extent for the created window
+ * @param height The y extend for the created window
+ * @param fullscreen Whether the created window should be fullscreen
+ * @param title The title for the created window
+ * @return A heap pointer to the created struct
  */
 game_T* init(int width, int height, bool fullscreen, char* title);
 
 /**
  * Polls for and logs SDL & SDL library errors
- * Prefix is a message to be placed before the logged error
- * Should exit determines whether the program should exit if an error is found
- * Returns whether an error was found
+ * @param prefix A message to be placed before the logged error
+ * @param should_exit Determines whether the program should exit if an error is found
+ * @return Whether an error was found
  */
 bool check_errors(const char* prefix, bool should_exit);
 
 /**
- * Sets up a loop to call func at n calls per second roughly
+ * Sets up a loop for regular calling
+ * @param game_func The function to be called
+ * @param n The number of calls to game_func per second
+ * @param pass A passthrough variable
  */
-void start(uint32_t (*func) (uint32_t time, void* pass), int n, void* pass);
+void start(game_update_T, int n, void* pass);
 
 /**
  * Updates input and renders the context to the window
- * DOES NOT poll for window events - you must do that in the MAIN THREAD
+ * @param game The game to perform this operation on
  */
 void update(game_T* game);
 

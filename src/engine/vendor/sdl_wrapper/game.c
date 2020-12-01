@@ -30,8 +30,8 @@ game_T* init(int width, int height, bool fullscreen, char* title) {
 
     GAME->context = context(surface_image(SDL_GetWindowSurface(GAME->window->window)));
     {
-        set_clear(GAME->context, color(1.0f, 1.0f, 1.0f));
-        set_color(GAME->context, color(0.0f, 0.0f, 0.0f));
+        GAME->context->clear = color(1.0f, 1.0f, 1.0f);
+        GAME->context->foreground = color(0.0f, 0.0f, 0.0f);
     }
 
     GAME->input = input();

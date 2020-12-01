@@ -50,44 +50,43 @@ context_T* context(image_T* surface);
 void clear(context_T* context);
 
 /**
- * Fills a rectangle in the surface with the current foreground color with the given dimensions
+ * Fills a rectangle using the current foreground color
  * @param context The context to peform this operation on
+ * @param x The x position to start filling the shape at
+ * @param y The y position to start filling the shape at
+ * @param width The x extent to which the shape should be filled
+ * @param height The y extent to which the shape should be filled
  */
 void fill_rect(context_T* context, int x, int y, int width, int height);
 
 /**
- * Draws the given image to the surface at the given location
+ * Samples an image and draws it to the screen
+ * @param context The context to peform this operation on
+ * @param image The image to sample from
+ * @param x The x position to start filling the shape at
+ * @param y The y position to start filling the shape at
  */
 void draw_image(context_T* context, image_T* image, int x, int y);
 
 /**
- * Draws the given string str to the surface at the given position using the current foreground color
+ * Draws a string using the current foreground color
+ * @note To avoid allocation overheads - only use this for dynamic strings. For static strings create an image of the string using the text() function in image.h
+ * @see image
+ * @param context The context to peform this operation on
+ * @param str The string to be drawn
+ * @param x The x position to start filling the shape at
+ * @param y The y position to start filling the shape at
  */
 void draw_string(context_T* context, const char* str, int x, int y);
 
 /**
- * Draws the given string str to the surface at the given position using the current foreground color
+ * Draws a string using the current foreground color, allowing wrapping and newline chars
+ * @param context The context to peform this operation on
+ * @param str The string to be drawn
+ * @param x The x position to start filling the shape at
+ * @param y The y position to start filling the shape at
+ * @param width The width at which the text will wrap
  */
 void draw_string_bounded(context_T* context, const char* str, int x, int y, int width);
-
-/**
- * Sets the clear color of the context
- */
-void set_clear(context_T* context, color_T* color);
-
-/**
- * Sets the foreground color of the context
- */
-void set_color(context_T* context, color_T* color);
-
-/**
- * Sets the active font of the context
- */
-void set_font(context_T* context, font_T* font);
-
-/**
- * Sets the offset at which drawing will occur
- */
-void set_offset(context_T* context, int x, int y);
 
 #endif

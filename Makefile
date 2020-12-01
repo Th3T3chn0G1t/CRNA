@@ -24,7 +24,7 @@ IMG_VERSION = SDL2_image-2.0.5
 CUNIT_VERSION = 2.1-2
 
 build: ### Build the project
-	@mkdir logs
+	-@mkdir logs
 	@time make $(exec) -j 2>&1 | tee $(logfile) 
 	@echo "Complete!"
 
@@ -50,15 +50,14 @@ run: ### Build and execute the program
 	@./$(exec)
 
 debug: buildtime_flags = -g -DDEBUG
-debug: ### Generate debug symbols for program and enter debugger
-	@make
+debug: $(exec) ### Generate debug symbols for program and enter debugger
 	@dsymutil $(exec)
 	@$(debugger) $(exec)
 
 
 release: buildtime_flags = -O3 -DRELEASE
-release: ### Append release flags and build the program
-	@make
+release: $(exec) ### Append release flags and build the program
+
 test_objects: $(test_objects)
 	@exit
 test: ### Run unit tests (CUnit)

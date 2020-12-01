@@ -98,7 +98,7 @@ void crna_init(start_function_T, update_function_T, destroy_function_T) {
         set_decorated(CRNA->game->window, CRNA->settings->decorated);
         set_position(CRNA->game->window, CRNA->settings->posX, CRNA->settings->posY);    
 
-        set_font(CRNA->game->context, font(CRNA->settings->font, CRNA->settings->font_size));
+        CRNA->game->context->font = font(CRNA->settings->font, CRNA->settings->font_size);
     }
 
     start_func(CRNA->settings, &(CRNA->registry), CRNA->game);
