@@ -99,15 +99,55 @@ Welcome</h1>
 Hello CRNA</h1>
 <p>(This section presumes that you have followed the intallation instructions in the README)</p>
 <p>To generate a new project, navigate to the CRNA directory in the command line and run<code>scripts/generateProjectTemplate.sh &lt;destination dir&gt;</code> where destination dir is the relative path to the destination directory. E.g. <code>scripts/generateProjectTemplate.sh ~/dev/crna_tutorial</code>. This script automatically excludes a lot of the stuff you don't need</p>
-<p>Now if you naviagate to <code>src/game/main.c</code> in your newly created project, you can observe the following: #include "../engine/include/crna.h" #include "../engine/include/io.h"</p>
-<p>void on_start(settings_T* settings, node_T** registry, game_T* game) { info("Game started"); }</p>
-<p>void on_update(game_T* game, node_T* registry, camera_controller_T* camera) { static bool echoed_gamestate = false; if(!echoed_gamestate) { <a class="el" href="crna_8h.html#a4f598d87bd0233fcd75929b91826be7a">print_gamestate_info()</a>; echoed_gamestate = true; } }</p>
-<p>void on_destroy(node_T* registry) { info("Shutting down..."); }</p>
-<p>int main(int argc, char** argv) { crna_init(on_start, on_update, on_destroy); }</p>
-<p>If you now add the line <code>info("Hello, world!")</code> to the <code>on_start()</code> function and run <code>make run</code>, then exit the program using <code>ALT-F4</code> on Linux or <code>CMD+Q</code> on MacOS. You should see the following log output: INFO: Hello, world! INFO: Game started WARNING: Registry was empty during initialization. Creating dummy entry at index 0 for camera controller DEBUG: Gamestate Information</p>
-<p>Game Settings: Resolution: 1280 x 800 Framerate: 60 Position: 0, 0 Title: Title Version: 0.0.0 Fullscreen?: False Decorated?: False Font: res/font/BPdotsSquareBold.ttf Font Size: 16 Registry Length: 1 Game: Window: Valid Window Context: Valid Input Context: Valid Camera Controller: Drawing Context: Valid Latch: Valid</p>
-<p>INFO: Quit requested by user INFO: Shutting down...</p>
-<p>The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions </p>
+<p>Now if you naviagate to <code>src/game/main.c</code> in your newly created project, you can observe the following: </p><div class="fragment"><div class="line">#include &quot;../engine/include/crna.h&quot;</div>
+<div class="line">#include &quot;../engine/include/io.h&quot;</div>
+<div class="line"> </div>
+<div class="line">void on_start(settings_T* settings, node_T** registry, game_T* game) {</div>
+<div class="line">    info(&quot;Game started&quot;);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">void on_update(game_T* game, node_T* registry, camera_controller_T* camera) {</div>
+<div class="line">    static bool echoed_gamestate = false;</div>
+<div class="line">    if(!echoed_gamestate) {</div>
+<div class="line">        print_gamestate_info();</div>
+<div class="line">        echoed_gamestate = true;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">void on_destroy(node_T* registry) {</div>
+<div class="line">    info(&quot;Shutting down...&quot;);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">int main(int argc, char** argv) {</div>
+<div class="line">    crna_init(on_start, on_update, on_destroy);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>If you now add the line <code>info("Hello, world!")</code> to the <code>on_start()</code> function and run <code>make run</code>, then exit the program using <code>ALT-F4</code> on Linux or <code>CMD+Q</code> on MacOS. You should see the following log output: </p><div class="fragment"><div class="line">INFO: Hello, world!</div>
+<div class="line">INFO: Game started</div>
+<div class="line">WARNING: Registry was empty during initialization. Creating dummy entry at index 0 for camera controller</div>
+<div class="line">DEBUG: Gamestate Information</div>
+<div class="line"> </div>
+<div class="line">Game Settings:</div>
+<div class="line">        Resolution: 1280 x 800</div>
+<div class="line">        Framerate: 60</div>
+<div class="line">        Position: 0, 0</div>
+<div class="line">        Title: Title</div>
+<div class="line">        Version: 0.0.0</div>
+<div class="line">        Fullscreen?: False</div>
+<div class="line">        Decorated?: False</div>
+<div class="line">        Font: res/font/BPdotsSquareBold.ttf</div>
+<div class="line">        Font Size: 16</div>
+<div class="line">Registry Length: 1</div>
+<div class="line">Game:</div>
+<div class="line">        Window: Valid</div>
+<div class="line">        Window Context: Valid</div>
+<div class="line">        Input Context: Valid</div>
+<div class="line">Camera Controller:</div>
+<div class="line">        Drawing Context: Valid</div>
+<div class="line">        Latch: Valid</div>
+<div class="line"> </div>
+<div class="line">INFO: Quit requested by user</div>
+<div class="line">INFO: Shutting down...</div>
+</div><!-- fragment --><p>The warnings and debug information are just default behaviours of the application and the compilation output will probably have some warnings especially in non-production versions </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
