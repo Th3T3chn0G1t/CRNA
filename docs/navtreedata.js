@@ -25,15 +25,16 @@
 var NAVTREE =
 [
   [ "CRNA", "index.html", [
+    [ "fejfwefhahhaha", "md_res_docs_tutorial_tutorial_welcome.html", null ],
     [ "Acknowledgments", "md__a_c_k_n_o_w_l_e_d_g_m_e_n_t_s.html", null ],
     [ "Contributing Guidelines", "md__c_o_n_t_r_i_b_u_t_i_n_g.html", [
-      [ "Code Style", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md2", [
-        [ "Sources", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md3", null ],
-        [ "Headers", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md4", null ]
+      [ "Code Style", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md3", [
+        [ "Sources", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md4", null ],
+        [ "Headers", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md5", null ]
       ] ],
-      [ "Scripts & Tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md5", [
-        [ "Makefile", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md6", null ],
-        [ "Other tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md7", null ]
+      [ "Scripts & Tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md6", [
+        [ "Makefile", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md7", null ],
+        [ "Other tools", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md8", null ]
       ] ]
     ] ],
     [ "Deprecated List", "deprecated.html", null ],

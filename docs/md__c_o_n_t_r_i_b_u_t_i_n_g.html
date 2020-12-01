@@ -87,9 +87,9 @@ $(document).ready(function(){initNavTree('md__c_o_n_t_r_i_b_u_t_i_n_g.html','');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>To contribute your changes to the project, please follow the <a href="https://help.github.com/articles/using-pull-requests/">GitHub how to</a> for pull requests</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Code Style</h1>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 Sources</h2>
 <ul>
 <li>Use <code>typedef struct</code>s instead of <code>struct</code>s unless absolutely neccesary</li>
@@ -100,25 +100,25 @@ Sources</h2>
 <li>Use bracketless statements where possible</li>
 <li>Use varadic arguments instead of arrays for direct arguments where possible</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Headers</h2>
 <ul>
 <li>Use <code>#define</code> and <code>#ifndef</code> to implement one-time includes, DO NOT USE <code>#pragma once</code></li>
 <li>Define function pointer types where the type is to be implemented in a program</li>
 <li>Use /**DOCUMENTATION*/ on all functions &amp; types (Not neccesary for structs) in headers</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Scripts &amp; Tools</h1>
 <p>NB. If it isn't reused internally or externally more than once, you dont need a script for it</p>
 <p>Compilation targets only are to be placed in the Makefile, other scripts and tools go in the scripts folder</p>
 <p>Scripts don't require tests, but please ensure they function properly for their purpose before adding them</p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Makefile</h2>
 <ul>
 <li>Document all callable targets using ### (Documentation is self-generating)</li>
 <li>Avoid requiring <code></code> in targets as it messes up the documentation output, run make inside the target instead</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Other tools</h2>
 <ul>
 <li>Avoid fetching external resources from webpages and the like</li>
