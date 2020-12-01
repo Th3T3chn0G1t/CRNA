@@ -25,6 +25,8 @@ Every part of every header contains documentation for its purpose and how to use
 
 The html documentation for the latest build is available [here](https://th3t3chn0g1t.github.io/CRNA/)
 
+The Makefile is self documenting and can be accessed by running ```make help``` and the scripts folder will usually provide usage information when run without arguments - but scripts aren't requried to document themselves short of justifying their existence
+
 ## Config
 There are a few build and execution settings that can be controlled by ini files in the ```.crna``` directory and all keys have ### documentation
 
