@@ -1,7 +1,7 @@
 ![CRNA Logo ROW](LogoTransparent.png)
 
 [![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://th3t3chn0g1t.github.io/CRNA/index.html)
-[![Build Status](https://api.travis-ci.com/Th3T3chn0G1t/CRNA.svg)](https://api.travis-ci.com/Th3T3chn0G1t/CRNA)
+[![Build Status](https://api.travis-ci.com/Th3T3chn0G1t/CRNA.svg)](https://travis-ci.com/Th3T3chn0G1t/CRNA)
 
 [![GPLV3LOGO](https://www.gnu.org/graphics/gplv3-or-later.png)](https://www.gnu.org/licenses/gpl-3.0.txt)
 
