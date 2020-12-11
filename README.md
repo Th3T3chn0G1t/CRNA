@@ -1,4 +1,4 @@
-![CRNA Logo ROW](LogoTransparent.png)
+![CRNA Logo Transparent](LogoTransparent.png)
 
 [![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://th3t3chn0g1t.github.io/CRNA/index.html)
 [![Build Status](https://api.travis-ci.com/Th3T3chn0G1t/CRNA.svg)](https://travis-ci.com/Th3T3chn0G1t/CRNA)
