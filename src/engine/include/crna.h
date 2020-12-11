@@ -1,6 +1,8 @@
 #ifndef CRNA_H
 #define CRNA_H
 
+#define UNUSED(x) (void)(x)
+
 /**
  * Common initialization function type
  */

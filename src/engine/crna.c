@@ -21,6 +21,8 @@
 static crna_T* CRNA;
 
 bool update_object(void* data, void* pass) {
+    UNUSED(pass);
+
     game_object_T* o = (game_object_T*) data;
     
     if(!o)
@@ -34,6 +36,8 @@ bool update_object(void* data, void* pass) {
 }
 
 uint32_t frame_callback(uint32_t time, void* pass) {
+    UNUSED(pass);
+
     clear(CRNA->game->context);
 
     foreach(CRNA->registry, update_object, CRNA);
