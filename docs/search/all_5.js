@@ -5,7 +5,7 @@ var searchData=
   ['fetch_48',['fetch',['../input_8h.html#a6043ca486be760fae423ca44c03596cf',1,'input.h']]],
   ['file_49',['file',['../logger_8h.html#a076fd8f44358b1bb5ce126624283d00d',1,'logger_T']]],
   ['fill_5frect_50',['fill_rect',['../context_8h.html#a09847925154a48c4e5a6a1d4f5da5445',1,'context.h']]],
-  ['font_51',['font',['../settings_8h.html#af4894023d780caf3ea68b879021b7c2f',1,'settings_T::font()'],['../context_8h.html#a4c80ffa93b1077fd8846110cc45f4c66',1,'context_T::font()'],['../font_8h.html#a6c63e65fbc1568120fc1381986ff98f7',1,'font_T::font()'],['../font_8h.html#a85a753ae3eb174cdf53cc3f3dca88d8a',1,'font():&#160;font.h']]],
+  ['font_51',['font',['../context_8h.html#a4c80ffa93b1077fd8846110cc45f4c66',1,'context_T::font()'],['../font_8h.html#a6c63e65fbc1568120fc1381986ff98f7',1,'font_T::font()'],['../settings_8h.html#af4894023d780caf3ea68b879021b7c2f',1,'settings_T::font()'],['../font_8h.html#a85a753ae3eb174cdf53cc3f3dca88d8a',1,'font():&#160;font.h']]],
   ['font_2eh_52',['font.h',['../font_8h.html',1,'']]],
   ['font_5fmetrics_5ft_53',['font_metrics_T',['../font_8h.html#structfont__metrics___t',1,'']]],
   ['font_5fsize_54',['font_size',['../settings_8h.html#a7e137e903a779ef1b52673b332ff1f60',1,'settings_T']]],

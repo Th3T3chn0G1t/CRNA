@@ -14,7 +14,7 @@
  */
 #define destroy_function_T void (*destroy_func) (node_T*)
 
-#include "../vendor/sdl_wrapper/include/game.h"
+#include "game.h"
 #include "camera_controller.h"
 #include "settings.h"
 

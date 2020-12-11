@@ -1,7 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "../vendor/sdl_wrapper/include/image.h"
+#include "image.h"
 
 /**
  * Contains basic information for frame-by-frame rendering of sprite animations

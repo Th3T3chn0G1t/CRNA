@@ -16,7 +16,7 @@
 
 #include "animation.h"
 #include "linked_list.h"
-#include "../vendor/sdl_wrapper/include/context.h"
+#include "context.h"
 
 #include <stdbool.h>
 

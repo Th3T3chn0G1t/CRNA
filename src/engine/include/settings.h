@@ -1,7 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "../vendor/sdl_wrapper/include/font.h"
+#include "font.h"
 #include <stdbool.h>
 
 /**
