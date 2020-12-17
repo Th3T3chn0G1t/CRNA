@@ -14,7 +14,7 @@ cflags     = -pedantic-errors -Wall -Wextra -I/usr/local/Cellar $(shell scripts/
 inih_flags = -DINI_USE_STACK=0 -DINI_ALLOW_REALLOC=1
 
 flags     = $(cflags) $(inih_flags)
-lib_flags = -lSDL2 -lSDL2_ttf -lSDL2_image
+lib_flags = -lX11 -lSDL2 -lSDL2_ttf -lSDL2_image
 
 build: $(exec) ### Build the project
 
