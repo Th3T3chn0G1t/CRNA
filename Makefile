@@ -1,28 +1,63 @@
-SDL_VERSION = SDL2-2.0.12
-TTF_VERSION = SDL2_ttf-2.0.15
-IMG_VERSION = SDL2_image-2.0.5
+# OS and Architecture detection
+ifeq ($(OS), Windows_NT)
+	OS = Windows
+	ifeq ($(PROCESSOR_ARCHITECTURE), AMD64)
+		ARCH = x86_64
+	else ifeq ($(PROCESSOR_ARCHITECTURE), IA64)
+		ARCH = x86_64
+	else ifeq ($(PROCESSOR_ARCHITECTURE), EM64T)
+		ARCH = x86_64
+	else ifeq ($(PROCESSOR_ARCHITECTURE), ARM64)
+		ARCH = AArch64
+	else ifeq ($(PROCESSOR_ARCHITECTURE), X86)
+		ARCH = i386
+	endif
+else
+    OS = $(shell uname -s)
+	ARCH = $(shell uname -m)
+endif
+
+SDL = SDL2-2.0.14
+TTF = SDL2_ttf-2.0.15
+IMG = SDL2_image-2.0.5
 
 compiler = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation compiler)
+ifeq ($(compiler),)
+	compiler = /usr/bin/gcc
+endif
+
 debugger = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation debugger)
+ifeq ($(debugger),)
+	debugger = /usr/bin/gdb
+endif
 
-exec 	  = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation exec)
+exec = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation exec)
+ifeq ($(exec),)
+	exec = main
+endif
 
-sources = $(wildcard src/engine/*.c) $(wildcard src/engine/vendor/inih/*.c) $(wildcard src/game/*.c)
+sources = $(wildcard src/engine/*.c) $(wildcard src/game/*.c) $(wildcard src/engine/vendor/inih/*.c)
 objects = $(sources:.c=.o)
 
-cflags     = -pedantic-errors -Wall -Wextra -I/usr/local/Cellar $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation cflags)
+cflags = -pedantic-errors -Wall -Wextra $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation cflags)
+ifeq ($(OS), Darwin)
+	flags += -I/usr/local/Cellar
+endif
+ifneq ($(OS), Darwin)
+	lib_flags += -lX11
+endif
 inih_flags = -DINI_USE_STACK=0 -DINI_ALLOW_REALLOC=1
-
-flags     = $(cflags) $(inih_flags)
-lib_flags = -lX11 -lSDL2 -lSDL2_ttf -lSDL2_image
+flags = $(cflags) $(inih_flags)
+lib_flags = -lSDL2 -lSDL2_ttf -lSDL2_image
 
 build: $(exec) ### Build the project
 
 debug: flags += -g -DDEBUG
 debug: $(exec) ### Generate debug symbols for program and enter debugger
+	@echo $(OS) $(ARCH)
 	@$(debugger) $(exec)
 
-release: flags += -O2 -DRELEASE
+release: flags += -O3 -DRELEASE
 release: $(exec) ### Append release flags and build the program
 
 #test: flags += -DTEST
@@ -43,17 +78,17 @@ documentation: ### Generates documentation for sources (Doxygen)
 	@doxygen Doxyfile
 
 get-deps:
-	curl -L https://www.libsdl.org/release/$(SDL_VERSION).tar.gz | tar xz
-	cd $(SDL_VERSION) && ./configure && make && sudo make install
-	rm -rf $(SDL_VERSION)
+	curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
+	cd $(SDL) && ./configure && make && sudo make install
+	rm -rf $(SDL)
 
-	curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF_VERSION).tar.gz | tar xz
-	cd $(TTF_VERSION) && ./configure && make && sudo make install
-	rm -rf $(TTF_VERSION)
+	curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF).tar.gz | tar xz
+	cd $(TTF) && ./configure && make && sudo make install
+	rm -rf $(TTF)
 	
-	curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG_VERSION).tar.gz | tar xz
-	cd $(IMG_VERSION) && ./configure && make && sudo make install
-	rm -rf $(IMG_VERSION)
+	curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
+	cd $(IMG) && ./configure && make && sudo make install
+	rm -rf $(IMG)
 
 help: ### Show this list 
 	@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
