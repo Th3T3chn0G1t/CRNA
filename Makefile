@@ -12,6 +12,8 @@ ifeq ($(OS), Windows_NT)
 	else ifeq ($(PROCESSOR_ARCHITECTURE), X86)
 		ARCH = i386
 	endif
+	win_rm = cmd //C del //Q //F
+    win_rm_r = cmd //C rmdir //Q //S
 else
     OS = $(shell uname -s)
 	ARCH = $(shell uname -m)
@@ -86,8 +88,8 @@ $(exec): $(objects)
 
 clean: ### Remove all generated files
 	ifeq ($(OS), Windows)
-		-@del /f $(objects)
-		-@del /f $(exec)
+		-@$(win_rm) $(objects)
+		-@$(win_rm) $(exec)
 	else
 		-@rm $(objects)
 		-@rm $(exec)
@@ -95,7 +97,7 @@ clean: ### Remove all generated files
 
 documentation: ### Generates documentation for sources (Doxygen)
 	ifeq ($(OS), Windows)
-		-@rmdir docs/*
+		-@$(win_rm_r) docs/*
 	else
 		-@rm -rf docs/*
 	endif
