@@ -36,8 +36,8 @@ ifeq ($(exec),)
 	exec = main
 endif
 
-user_sources = $(addsuffix .o, $(basename $(wildcard src/game/*.c)))
-test_sources = $(addsuffix .o, $(basename $(wildcard tests/*.c)))
+user_objects = $(addsuffix .o, $(basename $(wildcard src/game/*.c)))
+test_objects = $(addsuffix .o, $(basename $(wildcard src/tests/*.c)))
 sources = $(wildcard src/engine/*.c) $(wildcard src/engine/vendor/inih/*.c)
 objects = $(sources:.c=.o)
 
@@ -52,8 +52,8 @@ ifneq ($(OS), Darwin)
 	lib_flags += -lX11
 endif
 
-all: $(user_sources)
-all: objects += $(user_sources)
+all: $(user_objects)
+all: objects += $(user_objects)
 all: $(exec) ### Build the project
 
 debug: flags += -g -DDEBUG
@@ -65,10 +65,9 @@ debug: all ### Generate debug symbols for project and enter debugger
 release: flags += -O3 -DRELEASE
 release: all ### Append release flags and build the project
 
+test: $(test_objects)
+test: objects += $(test_objects)
 test: flags += -DTEST
-test: clean
-test: $(test_sources)
-test: objects += $(test_sources)
 test: $(exec) ### Run unit tests (CUnit)
 	./$(exec)
 
@@ -76,6 +75,7 @@ $(exec): $(objects)
 	@$(compiler) $(objects) $(flags) $(lib_flags) -o $(exec) 
 
 %.o: %.c
+	@echo $*
 	@$(compiler) -c $(flags) $< -o $@
 
 clean: ### Remove all generated files
