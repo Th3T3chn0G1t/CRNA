@@ -60,7 +60,7 @@ debug: flags += -g -DDEBUG
 debug: clean
 debug: all ### Generate debug symbols for project and enter debugger
 	@echo $(OS) $(ARCH)
-	@$(debugger) $(exec)
+	$(debugger) $(exec)
 
 release: flags += -O3 -DRELEASE
 release: all ### Append release flags and build the project
@@ -72,11 +72,11 @@ test: $(exec) ### Run unit tests (CUnit)
 	./$(exec)
 
 $(exec): $(objects)
-	@$(compiler) $(objects) $(flags) $(lib_flags) -o $(exec) 
+	$(compiler) $(objects) $(flags) $(lib_flags) -o $(exec) 
 
 %.o: %.c
-	@echo $*
-	@$(compiler) -c $(flags) $< -o $@
+	echo $*
+	$(compiler) -c $(flags) $< -o $@
 
 clean: ### Remove all generated files
 	-@rm $(shell find src/ -name *.o)
@@ -84,29 +84,29 @@ clean: ### Remove all generated files
 
 documentation: ### Generates documentation for sources (Doxygen)
 	-@rm -rf docs/*
-	@doxygen Doxyfile
+	doxygen Doxyfile
 
 libtool = libtoolize
 ifeq ($(OS), Darwin)
 	libtool = glibtoolize
 endif
 get-deps:
-	@curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
-	@cd $(SDL) && ./configure && make && sudo make install
-	@rm -rf $(SDL)
+	curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
+	cd $(SDL) && ./configure && make && sudo make install
+	rm -rf $(SDL)
 
-	@curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF).tar.gz | tar xz
-	@cd $(TTF) && ./configure && make && sudo make install
-	@rm -rf $(TTF)
+	curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF).tar.gz | tar xz
+	cd $(TTF) && ./configure && make && sudo make install
+	rm -rf $(TTF)
 	
-	@curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
-	@cd $(IMG) && ./configure && make && sudo make install
-	@rm -rf $(IMG)
+	curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
+	cd $(IMG) && ./configure && make && sudo make install
+	rm -rf $(IMG)
 
 	# Thanks to http://blog.cleverelephant.ca/2014/12/building-cunit-from-source.html
-	@git clone https://github.com/jacklicn/CUnit
-	@cd CUnit && $(libtool) -f -c -i && aclocal && autoheader && autoconf && automake --gnu --add-missing && ./configure && make && sudo make install
-	@rm -rf CUnit
+	git clone https://github.com/jacklicn/CUnit
+	cd CUnit && $(libtool) -f -c -i && aclocal && autoheader && autoconf && automake --gnu --add-missing && ./configure && make && sudo make install
+	rm -rf CUnit
 	
 help: ### Show this list 
 	@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
