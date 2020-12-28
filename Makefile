@@ -66,6 +66,7 @@ release: flags += -O3 -DRELEASE
 release: all ### Append release flags and build the project
 
 test: flags += -DTEST
+test: clean
 test: $(test_sources)
 test: objects += $(test_sources)
 test: $(exec) ### Run unit tests (CUnit)
