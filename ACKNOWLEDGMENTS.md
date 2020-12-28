@@ -9,6 +9,7 @@
 [SDL2](https://www.libsdl.org)
 
 [CUnit](http://cunit.sourceforge.net/index.html)
+[Building CUnit from Source](http://blog.cleverelephant.ca/2014/12/building-cunit-from-source.html)
 
 [GNU Make](https://www.gnu.org/software/make/)
 
