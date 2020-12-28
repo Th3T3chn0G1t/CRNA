@@ -91,15 +91,15 @@ ifeq ($(OS), Darwin)
 endif
 get-deps:
 	@curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
-	@cd $(SDL) && ./configure && make && sudo make install
+	@cd $(SDL) && ./configure --prefix=/usr/local/lib && make && sudo make install
 	@rm -rf $(SDL)
 
 	@curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF).tar.gz | tar xz
-	@cd $(TTF) && ./configure && make && sudo make install
+	@cd $(TTF) && ./configure --prefix=/usr/local/lib && make && sudo make install
 	@rm -rf $(TTF)
 	
 	@curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
-	@cd $(IMG) && ./configure && make && sudo make install
+	@cd $(IMG) && ./configure --prefix=/usr/local/lib && make && sudo make install
 	@rm -rf $(IMG)
 
 	# Thanks to http://blog.cleverelephant.ca/2014/12/building-cunit-from-source.html
