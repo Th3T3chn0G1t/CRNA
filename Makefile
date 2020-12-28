@@ -73,7 +73,7 @@ $(exec): $(objects)
 	@$(compiler) -c $(flags) $< -o $@
 
 clean: ### Remove all generated files
-	-@rm $(objects)
+	-@rm $(shell find src/ -name *.o)
 	-@rm $(exec)
 
 documentation: ### Generates documentation for sources (Doxygen)
