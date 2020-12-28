@@ -36,6 +36,8 @@ ifeq ($(exec),)
 	exec = main
 endif
 
+user_sources = $(addsuffix .o, $(basename $(wildcard src/game/*.c)))
+test_sources = $(addsuffix .o, $(basename $(wildcard tests/*.c)))
 sources = $(wildcard src/engine/*.c) $(wildcard src/engine/vendor/inih/*.c)
 objects = $(sources:.c=.o)
 
@@ -50,7 +52,8 @@ ifneq ($(OS), Darwin)
 	lib_flags += -lX11
 endif
 
-all: objects += $(addsuffix .o, $(basename $(wildcard src/game/*.c)))
+all: $(user_sources)
+all: objects += $(user_sources)
 all: $(exec) ### Build the project
 
 debug: flags += -g -DDEBUG
@@ -63,7 +66,8 @@ release: flags += -O3 -DRELEASE
 release: all ### Append release flags and build the project
 
 test: flags += -DTEST
-test: objects += $(addsuffix .o, $(basename $(wildcard tests/*.c)))
+test: $(test_sources)
+test: objects += $(test_sources)
 test: $(exec) ### Run unit tests (CUnit)
 
 $(exec): $(objects)
@@ -81,26 +85,17 @@ documentation: ### Generates documentation for sources (Doxygen)
 	@doxygen Doxyfile
 
 get-deps:
-	ifeq ($(OS), Windows)
-		@echo Action not applicable on $(OS)
-		@echo Please install $(SDL), $(IMG) and $(TTF)
-	else
-		@curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
-		@cd $(SDL) && ./configure && make && sudo make install
-		@rm -rf $(SDL)
+	@curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
+	@cd $(SDL) && ./configure && make && sudo make install
+	@rm -rf $(SDL)
 
-		@curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF).tar.gz | tar xz
-		@cd $(TTF) && ./configure && make && sudo make install
-		@rm -rf $(TTF)
-		
-		@curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
-		@cd $(IMG) && ./configure && make && sudo make install
-		@rm -rf $(IMG)
-	endif
+	@curl -L https://www.libsdl.org/projects/SDL_ttf/release/$(TTF).tar.gz | tar xz
+	@cd $(TTF) && ./configure && make && sudo make install
+	@rm -rf $(TTF)
+	
+	@curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
+	@cd $(IMG) && ./configure && make && sudo make install
+	@rm -rf $(IMG)
 	
 help: ### Show this list 
-	ifeq ($(OS), Windows)
-		@echo Action not applicable on $(OS)
-	else
-		@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
-	endif
+	@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
