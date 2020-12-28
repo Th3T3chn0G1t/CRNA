@@ -103,7 +103,7 @@ get-deps:
 	@rm -rf $(IMG)
 
 	@git clone https://github.com/jacklicn/CUnit
-	@cd CUnit && $(libtool) -f -c -i && aclocal && autoconf && automake --gnu --add-missing && ./configure --prefix=/usr/local && make && sudo make install
+	@cd CUnit && $(libtool) -f -c -i && aclocal && autoconf && automake --gnu --add-missing && autoheader && ./configure --prefix=/usr/local && make && sudo make install
 	@rm -rf CUnit
 	
 help: ### Show this list 
