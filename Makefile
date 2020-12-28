@@ -69,6 +69,7 @@ test: flags += -DTEST
 test: $(test_sources)
 test: objects += $(test_sources)
 test: $(exec) ### Run unit tests (CUnit)
+	./$(exec)
 
 $(exec): $(objects)
 	@$(compiler) $(objects) $(flags) $(lib_flags) -o $(exec) 
@@ -84,6 +85,10 @@ documentation: ### Generates documentation for sources (Doxygen)
 	-@rm -rf docs/*
 	@doxygen Doxyfile
 
+libtool = libtoolize
+ifeq ($(OS), Darwin)
+	libtool = glibtoolize
+endif
 get-deps:
 	@curl -L https://www.libsdl.org/release/$(SDL).tar.gz | tar xz
 	@cd $(SDL) && ./configure && make && sudo make install
@@ -96,6 +101,10 @@ get-deps:
 	@curl -L https://www.libsdl.org/projects/SDL_image/release/$(IMG).tar.gz | tar xz
 	@cd $(IMG) && ./configure && make && sudo make install
 	@rm -rf $(IMG)
+
+	@git clone https://github.com/jacklicn/CUnit
+	@cd CUnit && $(libtool) -f -c -i && aclocal && autoconf && automake --gnu --add-missing && ./configure --prefix=/usr/local && make && sudo make install
+	@rm -rf CUnit
 	
 help: ### Show this list 
 	@fgrep -h "###" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/###//'
