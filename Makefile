@@ -36,7 +36,7 @@ test_objects = $(addsuffix .o, $(basename $(wildcard src/tests/*.c)))
 sources = $(wildcard src/engine/*.c) $(wildcard src/engine/vendor/inih/*.c)
 objects = $(sources:.c=.o)
 
-cflags = -pedantic-errors -Wall -Wextra $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation cflags)
+cflags = -Wpedantic -Wall -Wextra $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation cflags)
 ifeq ($(OS), Darwin)
 	cflags += -I/usr/local/Cellar
 endif
