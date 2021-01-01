@@ -65,7 +65,7 @@ endif
 install: library
 	@cp $(exec) /usr/local/lib/$(exec)
 	-@mkdir /usr/local/include/crna
-	@cp -r src/engine/include/*.h /usr/local/include/crna/
+	@cp src/engine/include/*.h /usr/local/include/crna/
 
 debug: flags += -g -DDEBUG
 debug: clean
@@ -82,7 +82,7 @@ run: $(exec)
 test: $(test_objects)
 test: objects += $(test_objects)
 test: flags += -DTEST
-test: $(exec) ### Run unit tests (CUnit) FIX THEM NOW
+test: $(exec) ### Run unit tests (CUnit): FIX THEM NOW
 	./$(exec)
 
 $(exec): $(objects)
