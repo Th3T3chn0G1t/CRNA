@@ -54,8 +54,10 @@ static int handler(void* pass, const char* section, const char* key, const char*
     else if(MATCH_KEYPAIR("debug", "log_output_pattern"))
         settings->log_output_pattern = strdup(value);
 
-    else
+    else {
+        printf("Pre-Load: Invalid keypair [%s].%s: %s\n", section, key, value);
         return 0;
+    }
 
     return 1;
 }
@@ -65,13 +67,13 @@ settings_T* settings_load(const char* file) {
 
     int result = ini_parse(file, handler, settings);
     if(result) {
-        printf("Failed to parse ini file %s. ", file);
+        printf("Pre-Load: Failed to parse ini file %s. ", file);
         if(result == -1)
             printf("File open error\n");
         else if(result == -2)
             printf("Memory allocation error\n");
         else
-            printf("Parse error at line %i\nm", result);
+            printf("Parse error at line %i\n", result);
         
         settings->title = "Error";
         settings->version = "Error";
