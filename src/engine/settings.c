@@ -16,6 +16,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  */
 #include "include/settings.h"
+#include "include/logger.h"
 #include "assert.h"
 #include "vendor/inih/ini.h"
 
@@ -62,7 +63,29 @@ static int handler(void* pass, const char* section, const char* key, const char*
 settings_T* settings_load(const char* file) {
     settings_T* settings = calloc(1, sizeof(struct SETTINGS));
 
-    ini_parse(file, handler, settings);
-    
+    int result = ini_parse(file, handler, settings);
+    if(result) {
+        printf("Failed to parse ini file %s. ", file);
+        if(result == -1)
+            printf("File open error\n");
+        else if(result == -2)
+            printf("Memory allocation error\n");
+        else
+            printf("Parse error at line %i\nm", result);
+        
+        settings->title = "Error";
+        settings->version = "Error";
+        settings->resX = 640;
+        settings->resY = 480;
+        settings->posX = 0;
+        settings->posY = 0;
+        settings->framerate = 60;
+        settings->fullscreen = false;
+        settings->decorated = false;
+        settings->font = "res/font/BPdotsSquareBold.ttf";
+        settings->font_size = 16;
+        settings->log_output_pattern = "logs/%s-%d-%02d-%02d %02d:%02d:%02d.log";
+    }
+
     return settings;
 }

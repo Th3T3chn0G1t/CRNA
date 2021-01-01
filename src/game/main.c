@@ -1,5 +1,5 @@
-#include "../engine/include/crna.h"
-#include "../engine/include/io.h"
+#include <crna/crna.h>
+#include <assert.h>
 
 void on_start(settings_T* settings, node_T** registry, game_T* game) {
     UNUSED(settings);

@@ -1,6 +1,10 @@
 .DS_Store
 logs
 *.o
+*.out
+*.so
+*.dylib
+*.dll
 .vscode
 main
 main.dSYM

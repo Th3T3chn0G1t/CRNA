@@ -26,11 +26,6 @@ ifeq ($(compiler),)
 	compiler = gcc
 endif
 
-debugger = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation debugger)
-ifeq ($(debugger),)
-	debugger = gdb
-endif
-
 exec = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation exec)
 ifeq ($(exec),)
 	exec = main
@@ -47,35 +42,53 @@ ifeq ($(OS), Darwin)
 endif
 inih_flags = -DINI_USE_STACK=0 -DINI_ALLOW_REALLOC=1
 flags = $(cflags) $(inih_flags)
-lib_flags = -lSDL2 -lSDL2_ttf -lSDL2_image
+linker_flags = -lSDL2 -lSDL2_ttf -lSDL2_image
 ifneq ($(OS), Darwin)
-	lib_flags += -lX11
+	linker_flags += -lX11
 endif
 
-all: $(user_objects)
-all: objects += $(user_objects)
-all: $(exec) ### Build the project
+ifeq ($(OS), Darwin)
+library: linker_flags += -dynamiclib
+library: exec = libcrna.dylib
+else
+library: flags += -fPIC
+library: linker_flags += -shared
+library: exec = libcrna.so
+endif
+library: $(exec)
+
+ifeq ($(OS), Darwin)
+install: exec = libcrna.dylib
+else
+install: exec = libcrna.so
+endif
+install: library
+	@cp $(exec) /usr/local/lib/$(exec)
+	-@mkdir /usr/local/include/crna
+	@cp -r src/engine/include/*.h /usr/local/include/crna/
 
 debug: flags += -g -DDEBUG
 debug: clean
-debug: all ### Generate debug symbols for project and enter debugger
-	@echo $(OS) $(ARCH)
-	$(debugger) $(exec)
+debug: library ### Generate debug symbols for project
 
 release: flags += -O3 -DRELEASE
-release: all ### Append release flags and build the project
+release: library ### Append release flags and build the project
+
+run: $(user_objects)
+run: objects += $(user_objects)
+run: $(exec)
+	./$(exec)
 
 test: $(test_objects)
 test: objects += $(test_objects)
 test: flags += -DTEST
-test: $(exec) ### Run unit tests (CUnit)
+test: $(exec) ### Run unit tests (CUnit) FIX THEM NOW
 	./$(exec)
 
 $(exec): $(objects)
-	$(compiler) $(objects) $(flags) $(lib_flags) -o $(exec) 
+	$(compiler) $(objects) $(flags) $(linker_flags) -o $(exec) 
 
 %.o: %.c
-	echo $*
 	$(compiler) -c $(flags) $< -o $@
 
 clean: ### Remove all generated files
