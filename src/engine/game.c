@@ -18,7 +18,7 @@
 #include "include/game.h"
 #include "include/logger.h"
 
-#include "SDL2/SDL_image.h"
+#include <SDL2/SDL_image.h>
 
 #ifdef __APPLE__
     #define IGNORE_0 '-'
@@ -30,10 +30,11 @@
 game_T* init(int width, int height, bool fullscreen, char* title) {
     game_T* GAME = calloc(1, sizeof(struct GAME));
 
-    SDL_Init(SDL_INIT_VIDEO);
+    if(SDL_Init(SDL_INIT_VIDEO))
+        check_errors("Failed to init video: ", true);
 
     #ifndef __APPLE__
-        SDL_Init(SDL_INIT_TIMER);
+    SDL_Init(SDL_INIT_TIMER);
     #endif
 
     TTF_Init();

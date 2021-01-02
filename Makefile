@@ -42,10 +42,22 @@ ifeq ($(OS), Darwin)
 endif
 inih_flags = -DINI_USE_STACK=0 -DINI_ALLOW_REALLOC=1
 flags = $(cflags) $(inih_flags)
-linker_flags = -lSDL2 -lSDL2_ttf -lSDL2_image
+linker_flags = -lSDL2 -lSDL2_ttf -lSDL2_image 
 ifneq ($(OS), Darwin)
 	linker_flags += -lX11
 endif
+prefix = /usr
+ifeq ($(OS), Darwin)
+prefix = /usr/local
+endif
+
+# Libs TODO
+# OS        Static       Done?    Dynamic     Done?
+# Windows   .lib           N      .dll          N
+#                                 .lib          N
+# *nix      .a             N      .so           Y
+# +Darwin   .framework     N      .dylib        Y
+#           .bundle        N      .framework    N
 
 ifeq ($(OS), Darwin)
 library: linker_flags += -dynamiclib
@@ -59,13 +71,12 @@ library: $(exec)
 
 ifeq ($(OS), Darwin)
 install: exec = libcrna.dylib
+install: prefix = /usr/local
 else
 install: exec = libcrna.so
 endif
 install: library
-	@cp $(exec) /usr/local/lib/$(exec)
-	-@mkdir /usr/local/include/crna
-	@cp -r src/engine/include/*.h /usr/local/include/crna/
+	-sudo cp $(exec) $(prefix)/lib/$(exec) && mkdir $(prefix)/include/crna && cp src/engine/include/*.h $(prefix)/include/crna/
 
 debug: flags += -g -DDEBUG
 debug: clean
@@ -74,6 +85,7 @@ debug: library ### Generate debug symbols for project
 release: flags += -O3 -DRELEASE
 release: library ### Append release flags and build the project
 
+#run: linker_flags += -lcrna
 run: $(user_objects)
 run: objects += $(user_objects)
 run: $(exec)

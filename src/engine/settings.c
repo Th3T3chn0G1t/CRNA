@@ -17,7 +17,7 @@
  */
 #include "include/settings.h"
 #include "include/logger.h"
-#include "assert.h"
+#include <assert.h>
 #include "vendor/inih/ini.h"
 
 #define MATCH_KEYPAIR(s, k) strcmp(section, s) == 0 && strcmp(key, k) == 0

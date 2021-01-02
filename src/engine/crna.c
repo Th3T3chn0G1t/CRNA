@@ -16,6 +16,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  */
 #include "include/crna.h"
+#ifndef __APPLE__
+#include <signal.h>
+#endif
 #include <time.h>
 
 static crna_T* CRNA;
@@ -50,10 +53,14 @@ uint32_t frame_callback(uint32_t time, void* pass) {
 }
 
 void exit_callback() {
-    SDL_DestroyWindow(CRNA->game->window->window);
+    if(CRNA) {
+        if(CRNA->game && CRNA->game->window)
+            SDL_DestroyWindow(CRNA->game->window->window);
 
-    CRNA->destroy_func(CRNA->registry);
-
+        if(CRNA->registry)
+            CRNA->destroy_func(CRNA->registry);
+    }
+    
     SDL_Quit();
 }
 
@@ -101,6 +108,9 @@ void crna_init(start_function_T, update_function_T, destroy_function_T) {
 
     #ifdef __APPLE__
         for(int i = 1; i != __DARWIN_NSIG; i++)
+            signal(i, on_signal_received);
+    #else
+        for(int i = 1; i != NSIG; i++)
             signal(i, on_signal_received);
     #endif
 
