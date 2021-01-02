@@ -76,13 +76,7 @@ else
 install: exec = libcrna.so
 endif
 install: library
-<<<<<<< HEAD
 	-sudo cp $(exec) $(prefix)/lib/$(exec) && mkdir $(prefix)/include/crna && cp src/engine/include/*.h $(prefix)/include/crna/
-=======
-	@cp $(exec) /usr/local/lib/$(exec)
-	-@mkdir /usr/local/include/crna
-	@cp src/engine/include/*.h /usr/local/include/crna/
->>>>>>> 4843c887109829228227d478004df1c1d68e27b7
 
 debug: flags += -g -DDEBUG
 debug: clean
