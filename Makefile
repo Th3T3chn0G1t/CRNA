@@ -13,8 +13,18 @@ ifeq ($(OS), Windows_NT)
 		ARCH = i386
 	endif
 else
-    OS = $(shell uname -s)
-	ARCH = $(shell uname -m)
+	ifeq ($(OS),)
+	    OS = $(shell uname -s)
+		ARCH = $(shell uname -m)
+	endif
+endif
+
+ifeq ($(OS), Darwin)
+U_SHELL = $(shell dscl . -read ~/ UserShell | sed 's/UserShell: //')
+else ifeq ($(OS), Windows)
+U_SHELL = C:/windows/cmd.exe
+else
+U_SHELL = $(shell finger $(USER) | grep -oP 'Shell: \K.*')
 endif
 
 SDL = SDL2-2.0.14
@@ -22,16 +32,15 @@ TTF = SDL2_ttf-2.0.15
 IMG = SDL2_image-2.0.5
 
 compiler = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation compiler)
-ifeq ($(compiler),)
+ifndef $(compiler)
 	compiler = gcc
 endif
 
 exec = $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation exec)
-ifeq ($(exec),)
+ifndef $(exec)
 	exec = main
 endif
 
-user_objects = $(addsuffix .o, $(basename $(wildcard src/game/*.c)))
 test_objects = $(addsuffix .o, $(basename $(wildcard src/tests/*.c)))
 sources = $(wildcard src/engine/*.c) $(wildcard src/engine/vendor/inih/*.c)
 objects = $(sources:.c=.o)
@@ -39,6 +48,8 @@ objects = $(sources:.c=.o)
 cflags = -Wpedantic -Wall -Wextra $(shell scripts/keyFromSection.sh .crna/build_settings.ini compilation cflags)
 ifeq ($(OS), Darwin)
 	cflags += -I/usr/local/Cellar
+else ifeq ($(OS), Windows)
+	cflags += -D_WIN32
 endif
 inih_flags = -DINI_USE_STACK=0 -DINI_ALLOW_REALLOC=1
 flags = $(cflags) $(inih_flags)
@@ -48,54 +59,68 @@ ifneq ($(OS), Darwin)
 endif
 prefix = /usr
 ifeq ($(OS), Darwin)
-prefix = /usr/local
+	prefix = /usr/local
 endif
-
+dynamic_lib_suffix = so
+ifeq ($(OS), Darwin)
+	dynamic_lib_suffix = dylib
+else ifeq ($(OS), Windows)
+	dynamic_lib_suffix = dll
+else 
+	shared = 1
+endif
+static_lib_suffix = a
+ifeq ($(OS), Windows)
+	static_lib_suffix = lib
+endif
 # Libs TODO
 # OS        Static       Done?    Dynamic     Done?
-# Windows   .lib           N      .dll          N
-#                                 .lib          N
-# *nix      .a             N      .so           Y
-# +Darwin   .framework     N      .dylib        Y
-#           .bundle        N      .framework    N
+# Windows   .lib           Y      .dll          N // Long term maybe - .def files?
+# *nix      .a             Y      .so           Y
+# +Darwin                         .dylib        Y
 
-ifeq ($(OS), Darwin)
-library: linker_flags += -dynamiclib
-library: exec = libcrna.dylib
+ifeq ($(static), 1)
+library: exec = libcrna.$(static_lib_suffix)
+library: static
 else
-library: flags += -fPIC
-library: linker_flags += -shared
-library: exec = libcrna.so
+library: exec = libcrna.$(dynamic_lib_suffix)
+library: dynamic
 endif
-library: $(exec)
 
-ifeq ($(OS), Darwin)
-install: exec = libcrna.dylib
-install: prefix = /usr/local
+ifeq ($(shared), 1)
+dynamic: flags += -fPIC
+dynamic: linker_flags += -shared
+dynamic: dynamic_lib_suffix = so
+#else ifeq ($(OS), Windows)
+#ifneq ($(findstring mingw, compiler),)
+#dynamic: linker_flags += -Wl,--out-implib,libcrna_dll.$(static_lib_suffix)
+#else ifneq ($(findstring cygwin, compiler),)
+#dynamic: linker_flags += -shared
+#endif
 else
-install: exec = libcrna.so
+dynamic: linker_flags += -dynamiclib
 endif
+dynamic: exec = libcrna.$(dynamic_lib_suffix)
+dynamic: $(exec)
+
+static: $(objects)
+	ar rcs libcrna.$(static_lib_suffix) $(objects)
+
 install: library
 	-sudo cp $(exec) $(prefix)/lib/$(exec) && mkdir $(prefix)/include/crna && cp src/engine/include/*.h $(prefix)/include/crna/
 
 debug: flags += -g -DDEBUG
 debug: clean
-debug: library ### Generate debug symbols for project
+debug: dynamic ### Generate debug symbols for project
 
 release: flags += -O3 -DRELEASE
-release: library ### Append release flags and build the project
+release: dynamic ### Append release flags and build the project
 
-#run: linker_flags += -lcrna
-run: $(user_objects)
-run: objects += $(user_objects)
-run: $(exec)
-	./$(exec)
-
-test: $(test_objects)
-test: objects += $(test_objects)
-test: flags += -DTEST
-test: $(exec) ### Run unit tests (CUnit): FIX THEM NOW
-	./$(exec)
+#test: $(test_objects)
+#test: objects += $(test_objects)
+#test: flags += -DTEST
+#test: $(exec) ### Run unit tests (CUnit): FIX THEM NOW
+#	./$(exec)
 
 $(exec): $(objects)
 	$(compiler) $(objects) $(flags) $(linker_flags) -o $(exec) 

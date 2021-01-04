@@ -14,5 +14,6 @@ var settings_8h =
       [ "title", "settings_8h.html#a429e8d604763934b579827dca0d16932", null ],
       [ "version", "settings_8h.html#a3c4877299ce26797664f3e289db9bd84", null ]
     ] ],
-    [ "settings_load", "settings_8h.html#a266e6c4de9ddcfcd589644b58a494307", null ]
+    [ "settings_load", "settings_8h.html#a266e6c4de9ddcfcd589644b58a494307", null ],
+    [ "settings_save", "settings_8h.html#a8c2cc7f022b4776edf15d3fefc78f01f", null ]
 ];

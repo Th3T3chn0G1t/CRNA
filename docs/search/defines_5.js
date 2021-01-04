@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['silent_332',['SILENT',['../logger_8h.html#a404d5107b2cc06d2e236b7320df1fa7d',1,'logger.h']]],
-  ['start_5ffunction_5ft_333',['start_function_T',['../crna_8h.html#a630694391f0f8bb5c5bc4340941279cb',1,'crna.h']]],
-  ['stderr_334',['STDERR',['../logger_8h.html#a3a540e3eef339eec06aff31c4ba1eb25',1,'logger.h']]],
-  ['stdout_335',['STDOUT',['../logger_8h.html#a8875037d0772a4fc34516f1e03d7e238',1,'logger.h']]]
+  ['object_5fcollide_5ffunction_5ft_338',['object_collide_function_T',['../game__object_8h.html#a38cb197e67c4ad4e694adb5476b4e864',1,'game_object.h']]],
+  ['object_5frender_5ffunction_5ft_339',['object_render_function_T',['../game__object_8h.html#a6b0e954b23906e670bc44b474e2182b5',1,'game_object.h']]],
+  ['object_5fupdate_5ffunction_5ft_340',['object_update_function_T',['../game__object_8h.html#ad689c9d0192f6b7d60b6f66ab042583d',1,'game_object.h']]]
 ];

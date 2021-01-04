@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "CRNA", "index.html", [
     [ "Tutorial", "md_res_docs_tutorial_welcome.html", [
-      [ "Installation", "index.html#autotoc_md3", null ],
+      [ "Building", "index.html#autotoc_md3", null ],
       [ "Documentation", "index.html#autotoc_md4", null ],
       [ "Config", "index.html#autotoc_md5", null ],
       [ "TODO", "index.html#autotoc_md6", null ],

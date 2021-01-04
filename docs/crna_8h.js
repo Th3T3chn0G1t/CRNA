@@ -10,6 +10,7 @@ var crna_8h =
     ] ],
     [ "destroy_function_T", "crna_8h.html#a5ac57447835002528acf89b519722fe6", null ],
     [ "start_function_T", "crna_8h.html#a630694391f0f8bb5c5bc4340941279cb", null ],
+    [ "UNUSED", "crna_8h.html#a86d500a34c624c2cae56bc25a31b12f3", null ],
     [ "update_function_T", "crna_8h.html#acce0a3f64bc7f20914296e96ce92786c", null ],
     [ "crna_init", "crna_8h.html#a67b9d4f15bbc86a12ece95941c6c6d27", null ],
     [ "print_gamestate_info", "crna_8h.html#a4f598d87bd0233fcd75929b91826be7a", null ]

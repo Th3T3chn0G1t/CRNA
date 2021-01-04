@@ -22,6 +22,7 @@
 
 #define MATCH_KEYPAIR(s, k) strcmp(section, s) == 0 && strcmp(key, k) == 0
 #define atob(str) !strcasecmp(str, "TRUE") ? true : false
+#define btoa(b) b ? "true" : "false"
 
 static int handler(void* pass, const char* section, const char* key, const char* value) {
     settings_T* settings = (settings_T*) pass;
@@ -67,14 +68,6 @@ settings_T* settings_load(const char* file) {
 
     int result = ini_parse(file, handler, settings);
     if(result) {
-        printf("Pre-Load: Failed to parse ini file %s. ", file);
-        if(result == -1)
-            printf("File open error\n");
-        else if(result == -2)
-            printf("Memory allocation error\n");
-        else
-            printf("Parse error at line %i\n", result);
-        
         settings->title = "Error";
         settings->version = "Error";
         settings->resX = 640;
@@ -87,7 +80,58 @@ settings_T* settings_load(const char* file) {
         settings->font = "res/font/BPdotsSquareBold.ttf";
         settings->font_size = 16;
         settings->log_output_pattern = "logs/%s-%d-%02d-%02d %02d:%02d:%02d.log";
+
+        printf("Pre-Load: Failed to parse ini file %s. ", file);
+        if(result == -1) {
+            printf("File open error, writing new file\n");
+            settings_save(settings, file);
+        }
+        else if(result == -2)
+            printf("Memory allocation error\n");
+        else
+            printf("Parse error at line %i\n", result);
+        
     }
 
     return settings;
+}
+
+void settings_save(settings_T* settings, const char* file) {
+    FILE* settings_file = fopen(file, "w");
+    fprintf(settings_file, " \
+[user] \n\
+title=%s \n\
+version=%s \n\
+ \n\
+[window] \n\
+resX=%i \n\
+resY=%i \n\
+posX=%i \n\
+posY=%i \n\
+framerate=%i \n\
+fullscreen=%s \n\
+decorated=%s \n\
+ \n\
+[rendering] \n\
+font=%s \n\
+font_size=%i \n\
+ \n\
+[debug] \n\
+log_output_pattern=%s \n\
+    ", 
+        settings->title, 
+        settings->version, 
+        settings->resX, 
+        settings->resY, 
+        settings->posX, 
+        settings->posY,
+        settings->framerate,
+        btoa(settings->fullscreen),
+        btoa(settings->decorated),
+        settings->font,
+        settings->font_size,
+        settings->log_output_pattern
+    );
+    fflush(settings_file);
+    fclose(settings_file);
 }

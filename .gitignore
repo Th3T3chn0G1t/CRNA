@@ -1,14 +1,9 @@
-.DS_Store
-logs
+*.log
 *.o
-*.out
+*.a
 *.so
 *.dylib
 *.dll
+.DS_Store
 .vscode
-main
-main.dSYM
 .crna/game_settings.ini
-SDL2-2.0.12
-SDL2_ttf-2.0.15
-SDL2_image-2.0.5

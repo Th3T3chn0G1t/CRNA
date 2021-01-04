@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['destroy_5ffunction_5ft_325',['destroy_function_T',['../crna_8h.html#a5ac57447835002528acf89b519722fe6',1,'crna.h']]]
+  ['clean_5ff_333',['clean_f',['../common_8h.html#a79515729767d00f9a21122a2e6aaec55',1,'common.h']]]
 ];

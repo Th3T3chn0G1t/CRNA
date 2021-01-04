@@ -65,4 +65,11 @@ typedef struct SETTINGS {
  */
 settings_T* settings_load(const char* file);
 
+/**
+ * Savess settings to the provided game settings ini file
+ * @param file The file to write to
+ * @param settings The struct to read the settings from
+ */
+void settings_save(settings_T* settings, const char* file);
+
 #endif

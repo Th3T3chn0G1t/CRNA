@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['foreach_5ffunc_326',['foreach_func',['../linked__list_8h.html#a5454ee33bfc3a84eedfec5bde4510da4',1,'linked_list.h']]]
+  ['destroy_5ffunction_5ft_334',['destroy_function_T',['../crna_8h.html#a5ac57447835002528acf89b519722fe6',1,'crna.h']]]
 ];

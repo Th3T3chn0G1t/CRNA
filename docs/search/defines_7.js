@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['verbose_337',['VERBOSE',['../logger_8h.html#a42f8c497a1968074f38bf5055c650dca',1,'logger.h']]]
+  ['unused_345',['UNUSED',['../crna_8h.html#a86d500a34c624c2cae56bc25a31b12f3',1,'crna.h']]],
+  ['update_5ffunction_5ft_346',['update_function_T',['../crna_8h.html#acce0a3f64bc7f20914296e96ce92786c',1,'crna.h']]]
 ];
