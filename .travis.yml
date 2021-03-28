@@ -1,4 +1,0 @@
-language: c
-install: sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libcunit1-dev
-script:
-  - make
