@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2021 TTG <prs.ttg+crna@pm.me>
+
 #include <crna/crna.h>
 
 void on_start(settings_T* settings, node_T** registry, game_T* game) {
