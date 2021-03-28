@@ -1,11 +1,10 @@
 ![CRNA Logo Transparent](LogoTransparent.png)
 
 [![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://th3t3chn0g1t.github.io/CRNA/index.html)
-[![Build Status](https://api.travis-ci.com/Th3T3chn0G1t/CRNA.svg)](https://travis-ci.com/Th3T3chn0G1t/CRNA)
 
 [![GPLV3LOGO](https://www.gnu.org/graphics/gplv3-or-later.png)](https://www.gnu.org/licenses/gpl-3.0.txt)
 
-**NB. CRNA is currently being developed for and on Unix based systems and does not officially support Windows. Keep this in mind for contributions**
+**NB. CRNA is currently being developed for and on Unix based systems and does not officially support Windows**
 
 CRNA is a game engine written in the C programming language using libSDL2 for rendering and input. It provides high level processes for managing a visual application and its facets. You can use CRNA to develop games and production-ready applications
 
