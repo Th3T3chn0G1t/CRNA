@@ -24,7 +24,7 @@ To download the project, just download the latest release or clone the directory
 
 To install for development, run `make install`, this will ask for root priveleges to copy the files to the required directories - DO NOT RUN AS ROOT as it may break the permissions on residual object files
 
-On Darwin systems (macOS & iOS), it will build a dylib by default. To make a Unix shared object use `shared=1 make dynamic`
+On Darwin systems (macOS & iOS), it will build a dylib by default. To make a shared object use `shared=1 make dynamic`
 
 To install a static library, run `static=1 make install` - however please make yourself aware aware of the GPL policies on static linkage
 
